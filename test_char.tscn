@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3nelvuog5v4d"]
+
+[ext_resource type="Texture2D" uid="uid://cwd5s4nki8klu" path="res://Clipped_image_20240529_170446.png" id="1_pyfvm"]
+[ext_resource type="Script" path="res://test_char.gd" id="1_xijjm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lorbp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_io6xg"]
+radius = 13.0384
+
+[node name="TestChar" type="CharacterBody2D"]
+script = ExtResource("1_xijjm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lorbp")
+
+[node name="ClippedImage20240529170446" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, -12)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_pyfvm")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_io6xg")
+debug_color = Color(0.554206, 0.550284, 0.330992, 0.42)
