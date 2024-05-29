@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://df2rwh4ynvmlp"]
+
+[ext_resource type="PackedScene" uid="uid://d3nelvuog5v4d" path="res://test_char.tscn" id="1_mjihl"]
+[ext_resource type="PackedScene" uid="uid://x7l3sjlitdfv" path="res://test_coin.tscn" id="2_qbump"]
+[ext_resource type="PackedScene" uid="uid://b5uoaqhpdfqco" path="res://test_obstacle.tscn" id="3_o0qqx"]
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TestChar" parent="." instance=ExtResource("1_mjihl")]
+position = Vector2(511, 238)
+
+[node name="TestCoin" parent="." instance=ExtResource("2_qbump")]
+position = Vector2(631, 278)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 324)
+
+[node name="TestCoin2" parent="." instance=ExtResource("2_qbump")]
+position = Vector2(320, 405)
+
+[node name="TestCoin3" parent="." instance=ExtResource("2_qbump")]
+position = Vector2(725, 507)
+
+[node name="TestCoin4" parent="." instance=ExtResource("2_qbump")]
+position = Vector2(263, 208)
+
+[node name="TestCoin5" parent="." instance=ExtResource("2_qbump")]
+position = Vector2(533, 507)
+
+[node name="TestObstacle" parent="." instance=ExtResource("3_o0qqx")]
+position = Vector2(815, 181)
+
+[node name="TestObstacle2" parent="." instance=ExtResource("3_o0qqx")]
+position = Vector2(816, 232)
+
+[node name="TestObstacle3" parent="." instance=ExtResource("3_o0qqx")]
+position = Vector2(817, 284)

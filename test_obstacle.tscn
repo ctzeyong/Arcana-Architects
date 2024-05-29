@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5uoaqhpdfqco"]
+
+[ext_resource type="Texture2D" uid="uid://ia1cy5xvfg7r" path="res://test obstacle/DALL·E-2024-05-29-18.39.png" id="1_uva0l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3q03"]
+size = Vector2(52, 52)
+
+[node name="TestObstacle" type="StaticBody2D"]
+
+[node name="Dall·e-2024-05-29-18_39" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_uva0l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r3q03")
