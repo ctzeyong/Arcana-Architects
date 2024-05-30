@@ -1,14 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://df2rwh4ynvmlp"]
 
-[ext_resource type="PackedScene" uid="uid://dce2idhc5dv70" path="res://v1char.tscn" id="1_y8xbd"]
 [ext_resource type="PackedScene" uid="uid://x7l3sjlitdfv" path="res://test_coin.tscn" id="2_qbump"]
+[ext_resource type="PackedScene" uid="uid://cm5r1wi0y1u3d" path="res://stealth_char.tscn" id="3_6xldr"]
 [ext_resource type="PackedScene" uid="uid://b5uoaqhpdfqco" path="res://test_obstacle.tscn" id="3_o0qqx"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
-
-[node name="v1Char" parent="." instance=ExtResource("1_y8xbd")]
-position = Vector2(494, 157)
 
 [node name="TestCoin" parent="." instance=ExtResource("2_qbump")]
 position = Vector2(631, 278)
@@ -36,3 +33,6 @@ position = Vector2(816, 232)
 
 [node name="TestObstacle3" parent="." instance=ExtResource("3_o0qqx")]
 position = Vector2(817, 284)
+
+[node name="StealthChar" parent="." instance=ExtResource("3_6xldr")]
+position = Vector2(478, 171)

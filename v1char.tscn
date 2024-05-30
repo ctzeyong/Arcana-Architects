@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dce2idhc5dv70"]
 
 [ext_resource type="Script" path="res://v1char.gd" id="1_ltrjb"]
-[ext_resource type="Texture2D" uid="uid://cf2ml2fsmdcjt" path="res://v1 char/front.png" id="2_h1gsm"]
+[ext_resource type="Texture2D" uid="uid://g522rgmsrqdp" path="res://v1 char/front2.png" id="2_hee7x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lorbp"]
 radius = 260.768
@@ -22,11 +22,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1.90735e-05, -210)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_dsqey")
 debug_color = Color(0.554206, 0.550284, 0.330992, 0.42)
 
-[node name="Front" type="Sprite2D" parent="."]
-position = Vector2(1490, 850)
-scale = Vector2(1.62234, 1.62234)
-texture = ExtResource("2_h1gsm")
+[node name="Front2" type="Sprite2D" parent="."]
+position = Vector2(10, -210)
+scale = Vector2(0.837838, 0.837838)
+texture = ExtResource("2_hee7x")
