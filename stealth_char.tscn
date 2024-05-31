@@ -4,19 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://7an6jat1iy21" path="res://stealth_char_anim.tscn" id="2_6kwbc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lorbp"]
-radius = 150.333
+radius = 88.2043
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0l271"]
-radius = 231.948
+radius = 114.739
 
 [node name="StealthChar" type="CharacterBody2D"]
-scale = Vector2(0.1, 0.1)
+collision_layer = 3
 script = ExtResource("1_e1eod")
 
 [node name="StealthCharAnim" parent="." instance=ExtResource("2_6kwbc")]
 unique_name_in_owner = true
 position = Vector2(9.53674e-07, 0)
-scale = Vector2(50, 50)
+scale = Vector2(25, 25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lorbp")
@@ -29,3 +29,10 @@ collision_mask = 2
 position = Vector2(0, -1.52588e-05)
 shape = SubResource("CircleShape2D_0l271")
 debug_color = Color(0.554206, 0.550284, 0.330992, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+limit_left = 0
+limit_top = 0
+limit_right = 592
+limit_bottom = 336
