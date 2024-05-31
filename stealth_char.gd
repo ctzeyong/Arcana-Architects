@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
+const SPEED = 100
 var last_direction = 0;
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * 300
+	velocity = direction * 100
 	
 	if direction.y < 0:
 		%StealthCharAnim.walk_up_anim()
