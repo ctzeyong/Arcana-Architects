@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlnp1c2eywyl0"]
+
+[ext_resource type="Script" path="res://purple_portal.gd" id="1_rcyux"]
+[ext_resource type="PackedScene" uid="uid://d1bmied7re66e" path="res://purple_portal_anim.tscn" id="1_rypte"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uaqq4"]
+radius = 16.0312
+
+[node name="PurplePortal" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_rcyux")
+
+[node name="PurplePortalAnim" parent="." instance=ExtResource("1_rypte")]
+position = Vector2(0, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("CircleShape2D_uaqq4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
