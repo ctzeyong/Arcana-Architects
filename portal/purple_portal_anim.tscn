@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt2og71is61y1"]
+[gd_scene load_steps=5 format=3 uid="uid://d1bmied7re66e"]
 
-[ext_resource type="Script" path="res://blue_portal_anim.gd" id="1_gddmb"]
-[ext_resource type="Texture2D" uid="uid://mswcl83o61bt" path="res://portal/bluess.png" id="2_fqsa1"]
+[ext_resource type="Texture2D" uid="uid://c7g8thpjvmdip" path="res://portal/purpless.png" id="1_0fnh3"]
+[ext_resource type="Script" path="res://portal/purple_portal_anim.gd" id="1_b043p"]
 
-[sub_resource type="Animation" id="Animation_63o6r"]
+[sub_resource type="Animation" id="Animation_ypsj4"]
 resource_name = "idle"
 length = 0.5
 loop_mode = 1
@@ -20,23 +20,22 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yku8k"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_61pca"]
 _data = {
-"idle": SubResource("Animation_63o6r")
+"idle": SubResource("Animation_ypsj4")
 }
 
-[node name="BluePortalAnim" type="Node2D"]
-position = Vector2(0, 15)
-script = ExtResource("1_gddmb")
+[node name="PurplePortalAnim" type="Node2D"]
+script = ExtResource("1_b043p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_fqsa1")
+texture = ExtResource("1_0fnh3")
 hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_yku8k")
+"": SubResource("AnimationLibrary_61pca")
 }
 speed_scale = 0.5
