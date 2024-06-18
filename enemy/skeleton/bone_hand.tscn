@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbndybdc7ho14"]
+
+[ext_resource type="Texture2D" uid="uid://dbcwyyvp3w06h" path="res://Pixel Crawler - FREE - 1.8/Weapons/Hands/Hands.png" id="1_sjm4t"]
+
+[node name="BoneHand" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_sjm4t")
+region_enabled = true
+region_rect = Rect2(3, 36, 8, 7)

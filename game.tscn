@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://j64jvwcmikw4" path="res://tiles/v1tilesheet.png" id="1_5cilq"]
 [ext_resource type="Script" path="res://game.gd" id="1_bwj84"]
-[ext_resource type="PackedScene" uid="uid://dt2og71is61y1" path="res://blue_portal_anim.tscn" id="2_dku8n"]
+[ext_resource type="PackedScene" uid="uid://dt2og71is61y1" path="res://portal/blue_portal_anim.tscn" id="2_dku8n"]
 [ext_resource type="PackedScene" uid="uid://cm5r1wi0y1u3d" path="res://stealth_char.tscn" id="3_6xldr"]
 [ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://purple_pearl.tscn" id="4_51svo"]
-[ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://purple_portal.tscn" id="5_70s1l"]
+[ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://portal/purple_portal.tscn" id="5_70s1l"]
 [ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sj148"]
@@ -187,6 +187,7 @@ theme_override_font_sizes/font_size = 10
 script = ExtResource("7_u3tdg")
 
 [node name="Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
