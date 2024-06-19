@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://df2rwh4ynvmlp"]
+[gd_scene load_steps=11 format=3 uid="uid://df2rwh4ynvmlp"]
 
 [ext_resource type="Texture2D" uid="uid://j64jvwcmikw4" path="res://tiles/v1tilesheet.png" id="1_5cilq"]
 [ext_resource type="Script" path="res://game.gd" id="1_bwj84"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://purple_pearl.tscn" id="4_51svo"]
 [ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://portal/purple_portal.tscn" id="5_70s1l"]
 [ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
+[ext_resource type="PackedScene" uid="uid://cr8q101gfmgoy" path="res://enemy/skeleton/base_skeleton_anim.tscn" id="8_7d2rt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sj148"]
 texture = ExtResource("1_5cilq")
@@ -211,6 +212,9 @@ text = "Options"
 [node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="BaseSkeletonAnim" parent="." instance=ExtResource("8_7d2rt")]
+position = Vector2(215, 153)
 
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
 [connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]
