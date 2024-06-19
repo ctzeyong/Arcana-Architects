@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://i75l08t235g5"]
+
+[ext_resource type="Script" path="res://enemy/skeleton/bone_right_grip.gd" id="1_4b8ey"]
+[ext_resource type="Texture2D" uid="uid://dbcwyyvp3w06h" path="res://Pixel Crawler - FREE - 1.8/Weapons/Hands/Hands.png" id="1_lwx6c"]
+
+[sub_resource type="Animation" id="Animation_6ujg2"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_ivdx2"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_byej6"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xw0xb"]
+_data = {
+"death": SubResource("Animation_byej6"),
+"idle": SubResource("Animation_6ujg2"),
+"walk": SubResource("Animation_ivdx2")
+}
+
+[node name="BoneRightGrip" type="Node2D"]
+script = ExtResource("1_4b8ey")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 0)
+texture = ExtResource("1_lwx6c")
+region_enabled = true
+region_rect = Rect2(16, 48, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_xw0xb")
+}
