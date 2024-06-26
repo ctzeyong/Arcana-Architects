@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://j64jvwcmikw4" path="res://tiles/v1tilesheet.png" id="1_5cilq"]
 [ext_resource type="Script" path="res://game.gd" id="1_bwj84"]
 [ext_resource type="PackedScene" uid="uid://dt2og71is61y1" path="res://portal/blue_portal_anim.tscn" id="2_dku8n"]
-[ext_resource type="PackedScene" uid="uid://cm5r1wi0y1u3d" path="res://stealth_char.tscn" id="3_6xldr"]
+[ext_resource type="PackedScene" uid="uid://cm5r1wi0y1u3d" path="res://v2 char/stealth_char.tscn" id="3_6xldr"]
 [ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://purple_pearl.tscn" id="4_51svo"]
 [ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://portal/purple_portal.tscn" id="5_70s1l"]
 [ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
-[ext_resource type="PackedScene" uid="uid://cr8q101gfmgoy" path="res://enemy/skeleton/base_skeleton_anim.tscn" id="8_7d2rt"]
+[ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="8_pl02a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sj148"]
 texture = ExtResource("1_5cilq")
@@ -136,7 +136,6 @@ position = Vector2(461, 30)
 
 [node name="StealthChar" parent="." instance=ExtResource("3_6xldr")]
 position = Vector2(24, 16)
-scale = Vector2(0.1, 0.0994311)
 
 [node name="PurplePortal" parent="." instance=ExtResource("5_70s1l")]
 position = Vector2(572, 294)
@@ -169,6 +168,28 @@ offset_bottom = 144.774
 scale = Vector2(0.00461573, 0.0132875)
 theme_override_font_sizes/font_size = 100
 text = "Level passed!"
+
+[node name="LevelFailed" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 128
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LevelFailed"]
+offset_left = -65.0
+offset_top = -38.0
+offset_right = 1191.0
+offset_bottom = 696.0
+color = Color(0.854902, 0.317647, 0.47451, 0.254902)
+
+[node name="Label" type="Label" parent="LevelFailed/ColorRect"]
+layout_mode = 0
+offset_left = 474.0
+offset_top = 317.0
+offset_right = 698.0
+offset_bottom = 384.0
+scale = Vector2(0.505031, 0.480276)
+theme_override_font_sizes/font_size = 100
+text = "Level failed!"
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 visible = false
@@ -213,8 +234,9 @@ text = "Options"
 layout_mode = 2
 text = "Quit"
 
-[node name="BaseSkeletonAnim" parent="." instance=ExtResource("8_7d2rt")]
-position = Vector2(215, 153)
+[node name="Guard" parent="." instance=ExtResource("8_pl02a")]
+position = Vector2(175, 66)
 
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
+[connection signal="health_depleted" from="StealthChar" to="." method="_on_stealth_char_health_depleted"]
 [connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]
