@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://7an6jat1iy21"]
 
-[ext_resource type="Script" path="res://stealth_char_anim.gd" id="1_ixc72"]
+[ext_resource type="Script" path="res://v2 char/stealth_char_anim.gd" id="1_ixc72"]
 [ext_resource type="Texture2D" uid="uid://dckk8qs1r7vt5" path="res://v2 char/stealthspritesheetv2.png" id="2_lubvu"]
 
 [sub_resource type="Animation" id="Animation_1iy1n"]

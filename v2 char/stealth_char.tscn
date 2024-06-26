@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm5r1wi0y1u3d"]
+
+[ext_resource type="Script" path="res://v2 char/stealth_char.gd" id="1_e1eod"]
+[ext_resource type="PackedScene" uid="uid://7an6jat1iy21" path="res://v2 char/stealth_char_anim.tscn" id="2_6kwbc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lorbp"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0l271"]
+radius = 10.4403
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cmr4l"]
+radius = 9.0
+
+[node name="StealthChar" type="CharacterBody2D"]
+collision_layer = 7
+script = ExtResource("1_e1eod")
+
+[node name="StealthCharAnim" parent="." instance=ExtResource("2_6kwbc")]
+unique_name_in_owner = true
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(2.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lorbp")
+
+[node name="Exit" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2(0, -1.52588e-05)
+scale = Vector2(0.99654, 0.992063)
+shape = SubResource("CircleShape2D_0l271")
+debug_color = Color(0.554206, 0.550284, 0.330992, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+limit_left = 0
+limit_top = 0
+limit_right = 592
+limit_bottom = 336
+
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_cmr4l")
+debug_color = Color(0.856691, 0.329796, 0.421608, 0.42)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

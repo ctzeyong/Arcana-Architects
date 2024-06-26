@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://bktsqmld6r600"]
+
+[ext_resource type="Texture2D" uid="uid://c1ofye0hk7gyl" path="res://guard/guardspritesheet.png" id="1_q0i1m"]
+
+[sub_resource type="Animation" id="Animation_8vwp7"]
+resource_name = "walk_up"
+length = 1.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4, 3, 2, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_8ovlc"]
+resource_name = "walk_down"
+length = 1.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 11, 10, 9, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_diirv"]
+resource_name = "walk_left"
+length = 1.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 18, 19, 18, 17, 16, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_ypvs5"]
+resource_name = "walk_right"
+length = 1.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 25, 24, 23, 22, 23]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jum8c"]
+_data = {
+"walk_down": SubResource("Animation_8ovlc"),
+"walk_left": SubResource("Animation_diirv"),
+"walk_right": SubResource("Animation_ypvs5"),
+"walk_up": SubResource("Animation_8vwp7")
+}
+
+[node name="GuardAnim" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_q0i1m")
+hframes = 7
+vframes = 4
+frame = 25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jum8c")
+}
