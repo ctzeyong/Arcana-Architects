@@ -1,0 +1,259 @@
+[gd_scene load_steps=13 format=3 uid="uid://df2rwh4ynvmlp"]
+
+[ext_resource type="Texture2D" uid="uid://j64jvwcmikw4" path="res://tiles/v1tilesheet.png" id="1_5cilq"]
+[ext_resource type="Script" path="res://game.gd" id="1_bwj84"]
+[ext_resource type="PackedScene" uid="uid://dt2og71is61y1" path="res://portal/blue_portal_anim.tscn" id="2_dku8n"]
+[ext_resource type="PackedScene" uid="uid://cm5r1wi0y1u3d" path="res://v2 char/stealth_char.tscn" id="3_6xldr"]
+[ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://purple_pearl.tscn" id="4_51svo"]
+[ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://portal/purple_portal.tscn" id="5_70s1l"]
+[ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
+[ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="8_pl02a"]
+[ext_resource type="Script" path="res://GuardPath.gd" id="8_wygld"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sj148"]
+texture = ExtResource("1_5cilq")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_0/angular_velocity = 0.0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:1/0/physics_layer_0/angular_velocity = 0.0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0 = 0
+6:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:1/0/physics_layer_0/angular_velocity = 0.0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0 = 0
+7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:1/0/physics_layer_0/angular_velocity = 0.0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0 = 0
+5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:2/0/physics_layer_0/angular_velocity = 0.0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:2/0 = 0
+6:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:2/0/physics_layer_0/angular_velocity = 0.0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/0 = 0
+7:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:2/0/physics_layer_0/angular_velocity = 0.0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_eug06"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_sj148")
+
+[sub_resource type="Curve2D" id="Curve2D_p3esw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 96, 15, 0, 0, 0, 0, 96, 152, 0, 0, 0, 0, 96, 15)
+}
+point_count = 3
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_bwj84")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_eug06")
+format = 2
+layer_0/name = "1 ground"
+layer_0/z_index = -2
+layer_0/tile_data = PackedInt32Array(65535, 131072, 0, 131071, 131072, 0, 196607, 131072, 0, 262143, 131072, 0, 327679, 131072, 0, 393215, 131072, 0, 458751, 131072, 0, 524287, 131072, 0, 589823, 131072, 0, 655359, 131072, 0, 720895, 131072, 0, 786431, 131072, 0, 851967, 131072, 0, 917503, 131072, 0, 983039, 131072, 0, 1048575, 131072, 0, 1114111, 131072, 0, 1179647, 131072, 0, 1245183, 131072, 0, 1310719, 131072, 0, 1376255, 131072, 0, 1441791, 131072, 0, 1376256, 131072, 0, 1376257, 131072, 0, 1376258, 131072, 0, 1376259, 131072, 0, 1376260, 131072, 0, 1376261, 131072, 0, 1376262, 131072, 0, 1376263, 131072, 0, 1376264, 131072, 0, 1376265, 131072, 0, 1376266, 131072, 0, 1376267, 131072, 0, 1376268, 131072, 0, 1376269, 131072, 0, 1376270, 131072, 0, 1376271, 131072, 0, 1376272, 131072, 0, 1376273, 131072, 0, 1376274, 131072, 0, 1376275, 131072, 0, 1376276, 131072, 0, 1376277, 131072, 0, 1376278, 131072, 0, 1376279, 131072, 0, 1376280, 131072, 0, 1376281, 131072, 0, 1376282, 131072, 0, 1376283, 131072, 0, 1376284, 131072, 0, 1376285, 131072, 0, 1376286, 131072, 0, 1376287, 131072, 0, 1376288, 131072, 0, 1376289, 131072, 0, 1376290, 131072, 0, 1376291, 131072, 0, 1376292, 131072, 0, 1376293, 131072, 0, 1310757, 131072, 0, 1245221, 131072, 0, 1179685, 131072, 0, 1114149, 131072, 0, 1048613, 131072, 0, 983077, 131072, 0, 917541, 131072, 0, 852005, 131072, 0, 786469, 131072, 0, 720933, 131072, 0, 655397, 131072, 0, 589861, 131072, 0, 524325, 131072, 0, 458789, 131072, 0, 393253, 131072, 0, 327717, 131072, 0, 262181, 131072, 0, 196645, 131072, 0, 131109, 131072, 0, 65573, 131072, 0, 37, 131072, 0, -65499, 131072, 0, -65500, 131072, 0, -65501, 131072, 0, -65502, 131072, 0, -65503, 131072, 0, -65504, 131072, 0, -65505, 131072, 0, -65506, 131072, 0, -65507, 131072, 0, -65508, 131072, 0, -65509, 131072, 0, -65510, 131072, 0, -65511, 131072, 0, -65512, 131072, 0, -65513, 131072, 0, -65514, 131072, 0, -65515, 131072, 0, -65516, 131072, 0, -65517, 131072, 0, -65518, 131072, 0, -65519, 131072, 0, -65520, 131072, 0, -65521, 131072, 0, -65522, 131072, 0, -65523, 131072, 0, -65524, 131072, 0, -65525, 131072, 0, -65526, 131072, 0, -65527, 131072, 0, -65528, 131072, 0, -65529, 131072, 0, -65530, 131072, 0, -65531, 131072, 0, -65532, 131072, 0, -65533, 131072, 0, -65534, 131072, 0, -65535, 131072, 0, -65536, 131072, 0, -1, 131072, 0)
+layer_1/name = "2 pickups"
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "3 obstacles"
+layer_2/tile_data = PackedInt32Array(3, 196608, 1, 65539, 196608, 1, 131075, 262144, 1, 196611, 196608, 2, 262147, 393216, 1, 327683, 196608, 2, 393219, 131072, 1, 458755, 458752, 2, 524291, 458752, 0, 589827, 131072, 0, 655363, 327680, 1, 720899, 327680, 1, 786435, 262144, 0, 851971, 262144, 0, 917507, 458752, 1, 983043, 131072, 2, 1048579, 393216, 1, 1114115, 393216, 0, 1310727, 262144, 2, 1245191, 458752, 0, 1179655, 458752, 0, 1114119, 196608, 1, 1048583, 131072, 0, 983047, 196608, 2, 720900, 131072, 0, 720901, 131072, 0, 720902, 262144, 1, 720903, 327680, 2, 720904, 327680, 0, 720905, 131072, 1, 720906, 458752, 1, 720907, 196608, 2, 786443, 458752, 0, 851979, 458752, 2, 917515, 262144, 0, 983051, 196608, 1, 1048587, 131072, 1, 1114123, 262144, 0, 1114124, 131072, 1, 1114125, 393216, 0, 1114126, 327680, 0, 1114127, 196608, 1, 1114128, 131072, 0, 1310740, 131072, 2, 1245204, 458752, 1, 1179668, 393216, 0, 1114132, 458752, 0, 1048596, 262144, 2, 983060, 131072, 2, 917524, 131072, 1, 851988, 262144, 0, 851987, 458752, 2, 851986, 458752, 0, 851985, 393216, 0, 851984, 262144, 2, 851983, 131072, 2, 8, 196608, 2, 65544, 458752, 0, 131080, 131072, 2, 196616, 327680, 1, 262152, 458752, 1, 327688, 196608, 0, 393224, 393216, 1, 458760, 131072, 1, 786447, 327680, 0, 720911, 458752, 0, 655375, 131072, 2, 589839, 196608, 1, 524303, 458752, 1, 458767, 458752, 1, 393231, 458752, 0, 327695, 262144, 2, 196623, 262144, 0, 262159, 262144, 1, 1114148, 393216, 0, 1114147, 393216, 2, 1114145, 131072, 1, 1114146, 196608, 1, 1114144, 458752, 0, 1114143, 196608, 0, 1114133, 196608, 2, 1114134, 458752, 0, 1114135, 196608, 1, 1114136, 131072, 1, 1114137, 262144, 1, 1114138, 131072, 2, 19, 327680, 0, 65555, 327680, 1, 131091, 393216, 0, 196627, 458752, 1, 262163, 327680, 0, 327699, 196608, 0, 393235, 131072, 2, 458771, 327680, 1, 524307, 196608, 2, 589843, 262144, 0, 589844, 458752, 2, 589845, 196608, 2, 589847, 458752, 0, 589846, 458752, 0, 1048602, 327680, 1, 983066, 393216, 1, 917530, 262144, 0, 851994, 131072, 1, 851995, 196608, 0, 851996, 196608, 1, 851997, 458752, 2, 851998, 196608, 1, 851999, 131072, 2, 852000, 262144, 0, 852001, 393216, 0, 786465, 458752, 1, 720929, 327680, 2, 655393, 196608, 1, 589857, 196608, 0, 524321, 393216, 1, 458785, 393216, 2, 393249, 393216, 2, 327713, 196608, 1, 262177, 262144, 0, 589848, 196608, 1, 589850, 131072, 1, 589849, 262144, 0, 589851, 262144, 1, 589852, 131072, 0, 589853, 196608, 0, 262176, 262144, 1, 262175, 327680, 1, 262174, 327680, 2, 262173, 131072, 2, 262172, 196608, 0, 262171, 196608, 2, 262170, 393216, 0, 262169, 393216, 0, 262168, 196608, 1, 262167, 458752, 1, 196622, 196608, 0, 196621, 131072, 0, 458766, 393216, 1, 393229, 327680, 0, 458765, 327680, 1, 262158, 196608, 1, 262157, 131072, 1, 327693, 131072, 2, 327694, 196608, 2, 393230, 393216, 0)
+
+[node name="BluePortalAnim" parent="." instance=ExtResource("2_dku8n")]
+position = Vector2(24, 16)
+
+[node name="PurplePearl" parent="." instance=ExtResource("4_51svo")]
+position = Vector2(26, 137)
+
+[node name="PurplePearl2" parent="." instance=ExtResource("4_51svo")]
+position = Vector2(56, 314)
+
+[node name="PurplePearl3" parent="." instance=ExtResource("4_51svo")]
+position = Vector2(96, 36)
+
+[node name="PurplePearl4" parent="." instance=ExtResource("4_51svo")]
+position = Vector2(375, 239)
+
+[node name="PurplePearl5" parent="." instance=ExtResource("4_51svo")]
+position = Vector2(376, 311)
+
+[node name="PurplePearl6" parent="." instance=ExtResource("4_51svo")]
+position = Vector2(284, 63)
+
+[node name="PurplePearl7" parent="." instance=ExtResource("4_51svo")]
+position = Vector2(461, 30)
+
+[node name="StealthChar" parent="." instance=ExtResource("3_6xldr")]
+position = Vector2(24, 16)
+
+[node name="PurplePortal" parent="." instance=ExtResource("5_70s1l")]
+position = Vector2(572, 294)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1149.0
+offset_bottom = 641.0
+
+[node name="LevelPassed" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 100
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LevelPassed"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(100.871, 34.9865)
+color = Color(0.306, 0.85, 0.578, 0.254902)
+
+[node name="Label" type="Label" parent="LevelPassed/ColorRect"]
+layout_mode = 0
+offset_left = 4.46116
+offset_top = 7.77444
+offset_right = 648.461
+offset_bottom = 144.774
+scale = Vector2(0.00461573, 0.0132875)
+theme_override_font_sizes/font_size = 100
+text = "Level passed!"
+
+[node name="LevelFailed" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 128
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LevelFailed"]
+offset_left = -65.0
+offset_top = -38.0
+offset_right = 1191.0
+offset_bottom = 696.0
+color = Color(0.854902, 0.317647, 0.47451, 0.254902)
+
+[node name="Label" type="Label" parent="LevelFailed/ColorRect"]
+layout_mode = 0
+offset_left = 474.0
+offset_top = 317.0
+offset_right = 698.0
+offset_bottom = 384.0
+scale = Vector2(0.505031, 0.480276)
+theme_override_font_sizes/font_size = 100
+text = "Level failed!"
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="GameUI" type="Control" parent="UserInterface"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PearlsCollected" type="Label" parent="UserInterface/GameUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+script = ExtResource("7_u3tdg")
+
+[node name="Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 101.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Guard" parent="." instance=ExtResource("8_pl02a")]
+position = Vector2(369, 193)
+
+[node name="Path2D" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_p3esw")
+
+[node name="GuardPath" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(96, 15)
+rotation = 1.5708
+script = ExtResource("8_wygld")
+
+[connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
+[connection signal="health_depleted" from="StealthChar" to="." method="_on_stealth_char_health_depleted"]
+[connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]

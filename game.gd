@@ -4,8 +4,8 @@ var pearls_collected = 0
 
 
 
-#func _process(delta):
-	#%LevelPassed.visible = false
+
+
 
 
 func _on_purple_portal_level_passed():

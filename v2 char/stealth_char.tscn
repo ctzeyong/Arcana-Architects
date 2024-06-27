@@ -10,10 +10,9 @@ radius = 9.0
 radius = 10.4403
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cmr4l"]
-radius = 9.0
 
 [node name="StealthChar" type="CharacterBody2D"]
-collision_layer = 7
+collision_layer = 15
 script = ExtResource("1_e1eod")
 
 [node name="StealthCharAnim" parent="." instance=ExtResource("2_6kwbc")]
@@ -35,6 +34,7 @@ shape = SubResource("CircleShape2D_0l271")
 debug_color = Color(0.554206, 0.550284, 0.330992, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 zoom = Vector2(2.5, 2.5)
 limit_left = 0
 limit_top = 0
