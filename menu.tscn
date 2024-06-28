@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb0p8hcc6u7hd"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_mypqg"]
-[ext_resource type="Texture2D" path="res://background/background.jpg" id="2_rvnpr"]
-[ext_resource type="Theme" path="res://button default.tres" id="3_wmnhn"]
+
+[ext_resource type="Texture2D" uid="uid://qyto60nr6jve" path="res://background/background.jpg" id="2_rvnpr"]
+[ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://button default.tres" id="3_wmnhn"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
