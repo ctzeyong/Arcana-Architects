@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwta5hpjw753i"]
+[gd_scene load_steps=5 format=3 uid="uid://cwta5hpjw753i"]
 
 [ext_resource type="Script" path="res://guard/guard.gd" id="1_2qko4"]
 [ext_resource type="PackedScene" uid="uid://bktsqmld6r600" path="res://guard/guard_anim.tscn" id="1_24ljv"]
@@ -7,13 +7,9 @@
 radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_284q3"]
-radius = 100.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_j0onp"]
-radius = 11.0
+radius = 150.0
 
 [node name="Guard" type="CharacterBody2D"]
-collision_layer = 129
 script = ExtResource("1_2qko4")
 
 [node name="GuardAnim" parent="." instance=ExtResource("1_24ljv")]
@@ -30,19 +26,3 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox"]
 shape = SubResource("CircleShape2D_284q3")
-
-[node name="ChaseTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 5.0
-one_shot = true
-
-[node name="AlertBox" type="Area2D" parent="."]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AlertBox"]
-shape = SubResource("CircleShape2D_j0onp")
-debug_color = Color(0.584625, 0.482082, 0.706517, 0.42)
-
-[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]

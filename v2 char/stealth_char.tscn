@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm5r1wi0y1u3d"]
+[gd_scene load_steps=7 format=3 uid="uid://cm5r1wi0y1u3d"]
 
 [ext_resource type="Script" path="res://v2 char/stealth_char.gd" id="1_e1eod"]
 [ext_resource type="PackedScene" uid="uid://7an6jat1iy21" path="res://v2 char/stealth_char_anim.tscn" id="2_6kwbc"]
@@ -9,10 +9,13 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_0l271"]
 radius = 10.4403
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cmr4l"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gw4iu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4yjt"]
+radius = 11.0
 
 [node name="StealthChar" type="CharacterBody2D"]
-collision_layer = 15
+collision_layer = 7
 script = ExtResource("1_e1eod")
 
 [node name="StealthCharAnim" parent="." instance=ExtResource("2_6kwbc")]
@@ -41,13 +44,22 @@ limit_top = 0
 limit_right = 592
 limit_bottom = 336
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 128
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_cmr4l")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_gw4iu")
 debug_color = Color(0.856691, 0.329796, 0.421608, 0.42)
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[node name="AlertBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlertBox"]
+shape = SubResource("CircleShape2D_w4yjt")
+debug_color = Color(0.588235, 0.462745, 0.772549, 0.321569)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hitbox_body_entered"]

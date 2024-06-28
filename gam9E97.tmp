@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://df2rwh4ynvmlp"]
+[gd_scene load_steps=17 format=3 uid="uid://df2rwh4ynvmlp"]
 
 [ext_resource type="Texture2D" uid="uid://j64jvwcmikw4" path="res://tiles/v1tilesheet.png" id="1_5cilq"]
 [ext_resource type="Script" path="res://game.gd" id="1_bwj84"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
 [ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="8_pl02a"]
 [ext_resource type="Script" path="res://GuardPath.gd" id="8_wygld"]
-[ext_resource type="PackedScene" uid="uid://bd5cb00jovd23" path="res://gloves.tscn" id="12_5sp0w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sj148"]
 texture = ExtResource("1_5cilq")
@@ -1650,7 +1649,7 @@ position = Vector2(96, 36)
 position = Vector2(375, 239)
 
 [node name="PurplePearl5" parent="." instance=ExtResource("4_51svo")]
-position = Vector2(565, 245)
+position = Vector2(376, 311)
 
 [node name="PurplePearl6" parent="." instance=ExtResource("4_51svo")]
 position = Vector2(284, 63)
@@ -1759,18 +1758,13 @@ layout_mode = 2
 text = "Quit"
 
 [node name="Guard" parent="." instance=ExtResource("8_pl02a")]
-position = Vector2(517, 152)
+position = Vector2(230, 15)
 
 [node name="Guard2" parent="." instance=ExtResource("8_pl02a")]
-position = Vector2(120, 203)
+position = Vector2(96, 15)
 rotation = -1.5708
 
-[node name="Guard3" parent="." instance=ExtResource("8_pl02a")]
-position = Vector2(173, 25)
-rotation = -2.35619
-
 [node name="Path2D" type="Path2D" parent="."]
-visible = false
 curve = SubResource("Curve2D_p3esw")
 
 [node name="GuardPath" type="PathFollow2D" parent="Path2D"]
@@ -1780,10 +1774,6 @@ rotation = -1.5708
 progress = 274.0
 script = ExtResource("8_wygld")
 
-[node name="Gloves" parent="." instance=ExtResource("12_5sp0w")]
-position = Vector2(369, 313)
-
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
 [connection signal="health_depleted" from="StealthChar" to="." method="_on_stealth_char_health_depleted"]
 [connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]
-[connection signal="artefact_picked_up" from="Gloves" to="." method="_on_gloves_artefact_picked_up"]

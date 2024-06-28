@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const BASE_SPEED = 100
 const SPRINT_MULTIPLIER = 2
+const ALERTBOX_RADIUS = 11
 var last_direction = 0 
 # to decide idle animation, 0 1 2 3 correspond to up down left right 
 var health = 100.0
@@ -16,6 +17,9 @@ func _physics_process(delta):
 	# detect if shift key is held down
 	if is_sprinting:
 		speed *= SPRINT_MULTIPLIER
+		%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * 2)
+	else:
+		%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS)
 	velocity = direction * speed
 	
 	if direction.y < 0:
@@ -59,7 +63,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	var guard_overlap = %Hitbox.get_overlapping_bodies() # Layer 8 instant death
+	var guard_overlap = %HitBox.get_overlapping_bodies() # Layer 8 instant death
 	if guard_overlap.size() > 0:
 		health -= 1000 * delta
 		print("damage")
