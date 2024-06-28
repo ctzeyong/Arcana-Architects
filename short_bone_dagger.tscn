@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2sr5jme5h3rx"]
+
+[ext_resource type="Texture2D" uid="uid://byv23fktqih1n" path="res://Pixel Crawler - FREE - 1.8/Weapons/Bone/Bone.png" id="1_5tyqg"]
+
+[sub_resource type="Animation" id="Animation_3mrst"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hibsl"]
+_data = {
+"idle": SubResource("Animation_3mrst")
+}
+
+[node name="ShortBoneDagger" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_5tyqg")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_hibsl")
+}

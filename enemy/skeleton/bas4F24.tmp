@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhqu8fvqpdn0t"]
+
+[ext_resource type="Script" path="res://enemy/skeleton/base_skeleton.gd" id="1_08hmt"]
+[ext_resource type="Texture2D" uid="uid://cvygi6sxn5lgo" path="res://Pixel Crawler - FREE - 1.8/Enemy/Skeleton Crew/Skeleton - Base/Idle/Idle-Sheet.png" id="1_d0lns"]
+[ext_resource type="PackedScene" uid="uid://dbndybdc7ho14" path="res://enemy/skeleton/bone_hand.tscn" id="3_45njt"]
+[ext_resource type="PackedScene" uid="uid://dxswd25is51b" path="res://weapon/wood/wood_dagger.tscn" id="3_qyrcb"]
+[ext_resource type="PackedScene" uid="uid://i75l08t235g5" path="res://enemy/skeleton/bone_right_grip.tscn" id="5_b1c5r"]
+
+[sub_resource type="Animation" id="Animation_o4bia"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6svol"]
+_data = {
+"idle": SubResource("Animation_o4bia")
+}
+
+[node name="BaseSkeleton" type="Node2D"]
+script = ExtResource("1_08hmt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../Idle")
+libraries = {
+"": SubResource("AnimationLibrary_6svol")
+}
+
+[node name="Idle" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_d0lns")
+hframes = 4
+frame = 3
+
+[node name="BoneHand" parent="." instance=ExtResource("3_45njt")]
+position = Vector2(-16, 4)
+
+[node name="WoodDagger" parent="." instance=ExtResource("3_qyrcb")]
+position = Vector2(14, -4)
+
+[node name="BoneRightGrip" parent="." instance=ExtResource("5_b1c5r")]
+position = Vector2(14, -2)

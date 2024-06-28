@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7os4ivl5b3nk"]
+
+[ext_resource type="Script" path="res://gloves_anim.gd" id="1_bm3j8"]
+[ext_resource type="Texture2D" uid="uid://cwwuqy11dwhor" path="res://pickups/gloves/glovess.png" id="1_lrehn"]
+
+[sub_resource type="Animation" id="Animation_knea2"]
+resource_name = "idle"
+length = 0.9
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ayjmx"]
+resource_name = "pickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_heojl"]
+_data = {
+"idle": SubResource("Animation_knea2"),
+"pickup": SubResource("Animation_ayjmx")
+}
+
+[node name="GlovesAnim" type="Node2D"]
+script = ExtResource("1_bm3j8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_lrehn")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_heojl")
+}

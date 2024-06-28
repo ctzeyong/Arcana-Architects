@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://df2rwh4ynvmlp"]
+[gd_scene load_steps=13 format=3 uid="uid://df2rwh4ynvmlp"]
 
 [ext_resource type="Texture2D" uid="uid://j64jvwcmikw4" path="res://tiles/v1tilesheet.png" id="1_5cilq"]
 [ext_resource type="Script" path="res://game.gd" id="1_bwj84"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://portal/purple_portal.tscn" id="5_70s1l"]
 [ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
 [ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="8_pl02a"]
+[ext_resource type="Script" path="res://GuardPath.gd" id="8_wygld"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sj148"]
 texture = ExtResource("1_5cilq")
@@ -93,6 +94,12 @@ texture = ExtResource("1_5cilq")
 [sub_resource type="TileSet" id="TileSet_eug06"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sj148")
+
+[sub_resource type="Curve2D" id="Curve2D_p3esw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 96, 15, 0, 0, 0, 0, 96, 152, 0, 0, 0, 0, 96, 15)
+}
+point_count = 3
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -235,7 +242,17 @@ layout_mode = 2
 text = "Quit"
 
 [node name="Guard" parent="." instance=ExtResource("8_pl02a")]
-position = Vector2(175, 66)
+position = Vector2(369, 193)
+
+[node name="Path2D" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_p3esw")
+
+[node name="GuardPath" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(96, 15)
+rotation = 1.5708
+script = ExtResource("8_wygld")
 
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
 [connection signal="health_depleted" from="StealthChar" to="." method="_on_stealth_char_health_depleted"]
