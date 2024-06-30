@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7os4ivl5b3nk"]
 
-[ext_resource type="Script" path="res://gloves_anim.gd" id="1_bm3j8"]
+[ext_resource type="Script" path="res://pickups/gloves/gloves_anim.gd" id="1_bm3j8"]
 [ext_resource type="Texture2D" uid="uid://cwwuqy11dwhor" path="res://pickups/gloves/glovess.png" id="1_lrehn"]
 
 [sub_resource type="Animation" id="Animation_knea2"]

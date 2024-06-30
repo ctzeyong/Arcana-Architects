@@ -26,15 +26,10 @@ shape = SubResource("CircleShape2D_8w7pb")
 [node name="DetectBox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
-collision_mask = 8
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox"]
 shape = SubResource("CircleShape2D_284q3")
-
-[node name="ChaseTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 5.0
-one_shot = true
 
 [node name="AlertBox" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -45,4 +40,15 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_j0onp")
 debug_color = Color(0.584625, 0.482082, 0.706517, 0.42)
 
+[node name="RotateTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="ChaseTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
