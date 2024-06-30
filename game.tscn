@@ -1737,13 +1737,13 @@ text = "Options"
 layout_mode = 2
 text = "Quit"
 
+[node name="Gloves" parent="." instance=ExtResource("9_vq7ia")]
+position = Vector2(361, 312)
+
 [node name="Guard" parent="." instance=ExtResource("8_pl02a")]
 unique_name_in_owner = true
 position = Vector2(477, 300)
 rotation = -1.5708
-
-[node name="Gloves" parent="." instance=ExtResource("9_vq7ia")]
-position = Vector2(361, 312)
 
 [node name="Guard2" parent="." instance=ExtResource("8_pl02a")]
 position = Vector2(120, 203)
@@ -1757,6 +1757,43 @@ rotation = -2.35619
 unique_name_in_owner = true
 position = Vector2(376, 204)
 rotation = 1.5708
+
+[node name="WASD" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 46.0
+offset_right = 2015.0
+offset_bottom = 183.0
+scale = Vector2(0.0755193, 0.0773901)
+theme_override_font_sizes/font_size = 100
+text = "\"WASD\" to move your character
+"
+
+[node name="Guards" type="Label" parent="."]
+offset_left = 55.0
+offset_top = 290.0
+offset_right = 1541.0
+offset_bottom = 427.0
+scale = Vector2(0.0841259, 0.0880596)
+theme_override_font_sizes/font_size = 100
+text = "Avoid guards, they will kill you!"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 156.0
+offset_top = 35.0
+offset_right = 2030.0
+offset_bottom = 172.0
+scale = Vector2(0.0751277, 0.0781285)
+theme_override_font_sizes/font_size = 100
+text = "\"Shift\" to dash, but it may alert guards!"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 343.0
+offset_top = 275.0
+offset_right = 3117.0
+offset_bottom = 412.0
+scale = Vector2(0.0874657, 0.0902076)
+theme_override_font_sizes/font_size = 100
+text = "Get the artefact...                    and leave through the portal!"
 
 [connection signal="timeout" from="RunOnceTimer" to="." method="_on_run_once_timer_timeout"]
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
