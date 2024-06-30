@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://d1bmied7re66e" path="res://portal/purple_portal_anim.tscn" id="1_rypte"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uaqq4"]
-radius = 16.0312
+radius = 5.0
 
 [node name="PurplePortal" type="Area2D"]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 2
 script = ExtResource("1_rcyux")
 
 [node name="PurplePortalAnim" parent="." instance=ExtResource("1_rypte")]
