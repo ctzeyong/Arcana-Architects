@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb0p8hcc6u7hd"]
+[gd_scene load_steps=5 format=3 uid="uid://bb0p8hcc6u7hd"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_mypqg"]
-
 [ext_resource type="Texture2D" uid="uid://qyto60nr6jve" path="res://background/background.jpg" id="2_rvnpr"]
 [ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://button default.tres" id="3_wmnhn"]
+[ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://HelvetiPixel.ttf" id="4_l3lrp"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -45,17 +45,20 @@ alignment = 1
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
 theme = ExtResource("3_wmnhn")
+theme_override_fonts/font = ExtResource("4_l3lrp")
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_wmnhn")
+theme_override_fonts/font = ExtResource("4_l3lrp")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../StartButton")
 theme = ExtResource("3_wmnhn")
+theme_override_fonts/font = ExtResource("4_l3lrp")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
