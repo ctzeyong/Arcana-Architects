@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb0p8hcc6u7hd"]
+[gd_scene load_steps=6 format=3 uid="uid://bb0p8hcc6u7hd"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_mypqg"]
 [ext_resource type="Texture2D" uid="uid://qyto60nr6jve" path="res://background/background.jpg" id="2_rvnpr"]
 [ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://button default.tres" id="3_wmnhn"]
 [ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://HelvetiPixel.ttf" id="4_l3lrp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rf04"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -16,6 +18,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mypqg")
 
+[node name="TextEdit" type="TextEdit" parent="."]
+show_behind_parent = true
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.503472
+anchor_top = -0.00308642
+anchor_right = 0.5
+offset_left = -381.0
+offset_top = 95.0
+offset_right = 371.0
+offset_bottom = 235.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_l3lrp")
+theme_override_font_sizes/font_size = 120
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0rf04")
+text = "Arcana Architects"
+placeholder_text = "Arcana Architects"
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -25,42 +46,46 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rvnpr")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBox Container" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.48
-anchor_top = 0.48
-anchor_right = 0.52
-anchor_bottom = 0.55
-offset_left = -34.96
-offset_top = -51.0
-offset_right = 35.04
-offset_bottom = 50.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.96
+offset_top = -50.5
+offset_right = 126.96
+offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="VBox Container"]
 layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_top = NodePath("../QuitButton")
 theme = ExtResource("3_wmnhn")
 theme_override_fonts/font = ExtResource("4_l3lrp")
 text = "Start"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="VBox Container"]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("3_wmnhn")
 theme_override_fonts/font = ExtResource("4_l3lrp")
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBox Container"]
 layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../StartButton")
 theme = ExtResource("3_wmnhn")
 theme_override_fonts/font = ExtResource("4_l3lrp")
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBox Container/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBox Container/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBox Container/QuitButton" to="." method="_on_quit_button_pressed"]
