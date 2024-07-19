@@ -9,6 +9,9 @@ var health = 100.0
 
 signal health_depleted
 
+func _ready():
+	Global.player = self
+
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	# map wasd to character movement
@@ -70,13 +73,19 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	var guard_overlap = %HitBox.get_overlapping_bodies() # Layer 8 instant death
-	if guard_overlap.size() > 0:
-		health -= 1000 * delta
-		print("damage")
-	if health <= 0:
-		health_depleted.emit()
+	#var guard_overlap = %HitBox.get_overlapping_bodies() # Layer 8 instant death
+	#if guard_overlap.size() > 0:
+		#health -= 1000 * delta
+		#print("damage")
+	#if health <= 0:
+		#health_depleted.emit()
 
+func take_damage(dmg):
+	print("damage")
+	health -= dmg
+	if health <= 0:
+		print("death")
+		health_depleted.emit()
 
 func _on_hitbox_body_entered(body):
 	print("death")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://daqy4t6d8uv0t"]
+
+[ext_resource type="PackedScene" uid="uid://cm5r1wi0y1u3d" path="res://v2 char/stealth_char.tscn" id="1_8swxy"]
+[ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="2_4raxs"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="StealthChar" parent="." instance=ExtResource("1_8swxy")]
+position = Vector2(118, 127)
+
+[node name="Guard" parent="." instance=ExtResource("2_4raxs")]
+position = Vector2(118, 15)
+rotation = 1.5708
