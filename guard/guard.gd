@@ -1,14 +1,15 @@
 extends CharacterBody2D
 
-@onready var player = get_node("/root/@Node2D@2/StealthChar")
+#@onready var player = get_node("/root/@Node2D@7/StealthChar")
 @onready var last_position = global_position
 @onready var original_rotation = rotation
 
-const angle_cone_of_vision = deg_to_rad(10.0)
-const max_view_distance = 100.0
-const angle_between_rays = deg_to_rad(10.0)
+var player = null
+const angle_cone_of_vision = deg_to_rad(95.0)
+const max_view_distance = 97.0
+const angle_between_rays = deg_to_rad(5)
 const rotation_speed = 2.0
-const patrol_rotation_speed = 1.0
+const patrol_rotation_speed = 0.8
 const chase_speed = 150
 
 
@@ -22,6 +23,11 @@ var rotation_state = 0
 var patrol_rotation_angle = deg_to_rad(60.0)
 
 func _ready():
+	player = Global.player
+	if player == null:
+		print("Player node not found")
+	else:
+		print("Player found")
 	generate_raycasts()
 	%GuardAnim.idle_right_anim()
 
@@ -56,6 +62,7 @@ func _physics_process(delta):
 	match state:
 		State.PATROL:
 			#print("patrol")
+			%SightCone.set_color(Color(0.878431, 1, 1, 1))
 			%GuardAnim.idle_right_anim()
 			if %DetectBox.get_overlapping_bodies():
 				#print("player in area")
@@ -70,12 +77,14 @@ func _physics_process(delta):
 					rotate_patrol(delta)
 		State.CHASE:
 			print("player detected")
+			%SightCone.set_color(Color(0.941176, 0.501961, 0.501961, 1))
 			chase_player(delta)
 			if !detect_player(delta):
 				state = State.LOST_SIGHT
 				%ChaseTimer.start()
 		State.LOST_SIGHT:
 			print("player sight lost")
+			%SightCone.set_color(Color(0.941176, 0.501961, 0.501961, 1))
 			chase_player(delta)
 			if detect_player(delta):
 				state = State.CHASE
@@ -97,14 +106,13 @@ func detect_player(delta):
 
 
 func chase_player(delta):
-	last_position = global_position
-	var direction = player.global_position - global_position
-	direction = direction.normalized()
-	
-	var angle_to = transform.x.angle_to(direction)
-	rotate(sign(angle_to) * min(delta * rotation_speed, abs(angle_to)))
-	
-	velocity = direction * chase_speed
+	#var direction = player.global_position - global_position
+	#direction = direction.normalized()
+	#
+	#var angle_to = transform.x.angle_to(direction)
+	#rotate(sign(angle_to) * min(delta * rotation_speed, abs(angle_to)))
+	#
+	#velocity = direction * chase_speed
 	%GuardAnim.sprint_right_anim()
 
 
