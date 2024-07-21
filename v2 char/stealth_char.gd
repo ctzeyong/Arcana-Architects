@@ -86,7 +86,3 @@ func take_damage(dmg):
 	if health <= 0:
 		print("death")
 		health_depleted.emit()
-
-func _on_hitbox_body_entered(body):
-	print("death")
-	health_depleted.emit()

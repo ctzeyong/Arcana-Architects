@@ -22,6 +22,9 @@ var p_state = P_State.STATIC
 var rotation_state = 0
 var patrol_rotation_angle = deg_to_rad(60.0)
 
+var raycasts = []
+var raycast_points = []
+
 func _ready():
 	player = Global.player
 	if player == null:
@@ -35,7 +38,7 @@ func set_rotate_patrol(angle): # called by game scene
 	p_state = P_State.ROTATE
 	rotation_state = 1
 	patrol_rotation_angle = deg_to_rad(angle)
-	
+
 
 func generate_raycasts(): # many raycasts as cone of sight
 	var ray_count = angle_cone_of_vision / angle_between_rays
@@ -47,22 +50,25 @@ func generate_raycasts(): # many raycasts as cone of sight
 		ray.set_collision_mask_value(1, true)
 		add_child(ray)
 		ray.enabled = true
-		
-		#var line = Line2D.new()
-		#line.default_color = Color(1,0,0)
-		#line.width = 2.0
-		#add_child(line)
+		raycasts.append(ray)
 
 
 func _physics_process(delta):
 	move_and_slide()
+	#raycast_points.clear()
 	#for ray in get_children():
 		#if ray is RayCast2D:
-			#update_line(ray)
+			#if ray.is_colliding():
+				#raycast_points.append(ray.get_collision_point())
+			#else:
+				#raycast_points.append(ray.global_position + ray.target_position)
+	#
+	#queue_redraw()
+	
 	match state:
 		State.PATROL:
 			#print("patrol")
-			%SightCone.set_color(Color(0.878431, 1, 1, 1))
+			%SightCone.set_color(Color(0.878431, 1, 1, 0.2))
 			%GuardAnim.idle_right_anim()
 			if %DetectBox.get_overlapping_bodies():
 				#print("player in area")
@@ -76,25 +82,19 @@ func _physics_process(delta):
 				P_State.ROTATE:
 					rotate_patrol(delta)
 		State.CHASE:
-			print("player detected")
-			%SightCone.set_color(Color(0.941176, 0.501961, 0.501961, 1))
+			#print("player detected")
+			%SightCone.set_color(Color(0.941176, 0.501961, 0.501961, 0.2))
 			chase_player(delta)
 			if !detect_player(delta):
 				state = State.LOST_SIGHT
 				%ChaseTimer.start()
 		State.LOST_SIGHT:
-			print("player sight lost")
-			%SightCone.set_color(Color(0.941176, 0.501961, 0.501961, 1))
+			#print("player sight lost")
+			%SightCone.set_color(Color(0.941176, 0.501961, 0.501961, 0.2))
 			chase_player(delta)
 			if detect_player(delta):
 				state = State.CHASE
 				%ChaseTimer.stop()
-
-
-func update_line(ray):
-	for line in get_children():
-		if line is Line2D:
-			line.points = [ray.global_position, ray.to_global(ray.target_position)]
 
 
 func detect_player(delta):
@@ -106,53 +106,35 @@ func detect_player(delta):
 
 
 func chase_player(delta):
-	#var direction = player.global_position - global_position
-	#direction = direction.normalized()
-	#
-	#var angle_to = transform.x.angle_to(direction)
-	#rotate(sign(angle_to) * min(delta * rotation_speed, abs(angle_to)))
-	#
-	#velocity = direction * chase_speed
+	var direction = player.global_position - global_position
+	direction = direction.normalized()
+	
+	var angle_to = transform.x.angle_to(direction)
+	rotate(sign(angle_to) * min(delta * rotation_speed, abs(angle_to)))
+	
+	velocity = direction * chase_speed
 	%GuardAnim.sprint_right_anim()
 
 
 
 func _on_chase_timer_timeout():
 	position = last_position
+	rotation = original_rotation
 	state = State.PATROL
 
 
 func rotate_patrol(delta):
 	match rotation_state:
 		1:
-			#print("1")
-			#var target_rotation = original_rotation - patrol_rotation_angle
-			#rotation = lerp_angle(rotation, target_rotation, patrol_rotation_speed * delta)
-			#if abs(rotation - target_rotation) < 0.01:
-				#rotation = target_rotation
-				#rotation_state = 2
-				#%RotateTimer.start()
 			rotate(-patrol_rotation_speed * delta)
 			if rotation <= original_rotation - patrol_rotation_angle:
 				rotation_state = 2
 				%RotateTimer.start()
 		3:
-			#print("3")
-			#var target_rotation = original_rotation + patrol_rotation_angle
-			#rotation = lerp_angle(rotation, target_rotation, patrol_rotation_speed * delta)
-			#if abs(rotation - target_rotation) < 0.01:
-				#rotation = target_rotation
-				#rotation_state = 4
-				#%RotateTimer.start()
 			rotate(patrol_rotation_speed * delta)
 			if rotation >= original_rotation + patrol_rotation_angle:
 				rotation_state = 4
 				%RotateTimer.start()
-		#5:
-			#print("5")
-			#rotate(-min(patrol_rotation_speed * delta, deg_to_rad(45)))
-			#if rotation <= deg_to_rad(1) and rotation >= -deg_to_rad(1):
-				#rotation_state = 1
 
 
 func _on_rotate_timer_timeout():
@@ -161,3 +143,21 @@ func _on_rotate_timer_timeout():
 			rotation_state = 3
 		4:
 			rotation_state = 1
+
+
+func _on_attack_box_body_entered(body):
+	if body.has_method("take_damage"):
+		body.take_damage(1000)
+
+
+func _draw():
+	draw_sight_cone()
+
+
+func draw_sight_cone():
+	print("draw")
+	var global_pos = global_position
+	var points = [global_pos] + raycast_points + [global_pos]
+	var color = Color(1, 1, 1, 0.3)
+	
+	draw_colored_polygon(points, color)
