@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-const BASE_SPEED = 100
+const BASE_SPEED = 5000
 const SPRINT_MULTIPLIER = 2
 const ALERTBOX_RADIUS = 10
-const ALERTBOX_MULTIPLER = 3
+const ALERTBOX_MULTIPLER = 4
 var last_direction = 0 
 # to decide idle animation, 0 1 2 3 correspond to up down left right 
 var health = 100.0
@@ -23,7 +23,7 @@ func _physics_process(delta):
 	if is_sprinting:
 		speed *= SPRINT_MULTIPLIER
 		
-	velocity = direction * speed
+	velocity = direction * speed * delta
 	
 	if direction.y < 0:
 		# character is moving up

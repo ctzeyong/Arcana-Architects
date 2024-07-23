@@ -77,7 +77,6 @@ polygon = PackedVector2Array(0, 0, 64.279, -76.604, 76.604, -64.279, 86.603, -50
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
-debug_enabled = true
 
 [connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_body_entered"]
 [connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
