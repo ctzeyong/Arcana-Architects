@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-const BASE_SPEED = 100
+const BASE_SPEED = 5000
 const SPRINT_MULTIPLIER = 2
 const ALERTBOX_RADIUS = 10
+const ALERTBOX_MULTIPLER = 4
 var last_direction = 0 
 # to decide idle animation, 0 1 2 3 correspond to up down left right 
 var health = 100.0
@@ -11,6 +12,7 @@ signal health_depleted
 
 func _ready():
 	Global.player = self
+	Global.visual_box = %VisualBox
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -21,14 +23,14 @@ func _physics_process(delta):
 	if is_sprinting:
 		speed *= SPRINT_MULTIPLIER
 		
-	velocity = direction * speed
+	velocity = direction * speed * delta
 	
 	if direction.y < 0:
 		# character is moving up
 		last_direction = 0;
 		if is_sprinting:
 			%StealthCharAnim.sprint_up_anim()
-			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * 3)
+			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * ALERTBOX_MULTIPLER)
 		else:
 			%StealthCharAnim.walk_up_anim()
 			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS)
@@ -37,7 +39,7 @@ func _physics_process(delta):
 		last_direction = 1;
 		if is_sprinting:
 			%StealthCharAnim.sprint_down_anim()
-			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * 3)
+			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * ALERTBOX_MULTIPLER)
 		else:
 			%StealthCharAnim.walk_down_anim()
 			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS)
@@ -46,7 +48,7 @@ func _physics_process(delta):
 		last_direction = 2;
 		if is_sprinting:
 			%StealthCharAnim.sprint_left_anim()
-			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * 3)
+			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * ALERTBOX_MULTIPLER)
 		else:
 			%StealthCharAnim.walk_left_anim()
 			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS)
@@ -55,12 +57,12 @@ func _physics_process(delta):
 		last_direction = 3;
 		if is_sprinting:
 			%StealthCharAnim.sprint_right_anim()
-			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * 3)
+			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS * ALERTBOX_MULTIPLER)
 		else:
 			%StealthCharAnim.walk_right_anim()
 			%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS)
 	else:
-		%AlertBox/CollisionShape2D.shape.set_radius(ALERTBOX_RADIUS)
+		%AlertBox/CollisionShape2D.shape.set_radius(0)
 		match last_direction:
 			0: 
 				%StealthCharAnim.idle_up_anim()
