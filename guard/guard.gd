@@ -8,14 +8,16 @@ var player_pos = null
 var player = null
 var visual_box = null
 var last_rotation
-const angle_cone_of_vision := deg_to_rad(90.0)
+const angle_cone_of_vision := deg_to_rad(94.0)
 const max_view_distance := 120.0
-const angle_between_rays := deg_to_rad(3)
+const angle_between_rays := deg_to_rad(2)
 const rotation_speed := 5.0
 const patrol_rotation_speed := 0.8
 const walking_rotation_speed := 4.0
 const chase_speed := 9000
 const walk_speed := 3000
+const rot_tolerance := 1.0
+const pos_tolerance := 2.0
 
 const LIGHT_CYAN := Color(0.878431, 1, 1, 0.1)
 const LIGHT_CORAL := Color(0.941176, 0.501961, 0.501961, 0.1)
@@ -95,7 +97,7 @@ func _physics_process(delta):
 				player_pos = player.global_position
 				%NavigationAgent2D.target_position = player_pos
 			var current_pos = global_position
-			var pos_reached = current_pos.distance_to(player_pos) < 2
+			var pos_reached = current_pos.distance_to(player_pos) < pos_tolerance
 			if pos_reached:
 				position = player_pos
 				velocity = Vector2.ZERO
@@ -153,19 +155,31 @@ func _physics_process(delta):
 
 func seek_player(delta):
 	%GuardAnim.idle_right_anim()
+	var rot_reached
 	match rotation_state:
 		1:
 			print("1")
 			rotate(-patrol_rotation_speed * delta)
-			if rotation <= last_rotation - deg_to_rad(60):
+			if abs(rotation - (last_rotation - deg_to_rad(60))) > deg_to_rad(360):
+				rot_reached = abs(rotation - (last_rotation - deg_to_rad(60))) - deg_to_rad(360) < deg_to_rad(rot_tolerance)
+			else:
+				rot_reached = abs(rotation - (last_rotation - deg_to_rad(60))) < deg_to_rad(rot_tolerance)
+			if rot_reached:
 				rotation_state = 2
 				%SeekTimer.start()
 		3:
 			print("3")
 			rotate(patrol_rotation_speed * delta)
-			if rotation >= original_rotation + deg_to_rad(60):
+			if abs(rotation - (last_rotation - deg_to_rad(60))) > deg_to_rad(360):
+				rot_reached = abs(rotation - (last_rotation - deg_to_rad(60))) - deg_to_rad(360) < deg_to_rad(rot_tolerance)
+			else:
+				rot_reached = abs(rotation - (last_rotation - deg_to_rad(60))) < deg_to_rad(rot_tolerance)
+			if rot_reached:
 				rotation_state = 4
 				%SeekTimer.start()
+			#if rotation >= original_rotation + deg_to_rad(60):
+				#rotation_state = 4
+				#%SeekTimer.start()
 
 func _on_seek_timer_timeout():
 	match rotation_state:
@@ -258,15 +272,24 @@ func return_to_original(delta):
 
 
 func rotate_patrol(delta):
+	var rot_reached
 	match rotation_state:
 		1:
 			rotate(-patrol_rotation_speed * delta)
-			if rotation <= original_rotation - patrol_rotation_angle:
+			if abs(rotation - (original_rotation - patrol_rotation_angle)) >= deg_to_rad(360):
+				rot_reached = abs(rotation - (original_rotation - patrol_rotation_angle)) - deg_to_rad(360) < deg_to_rad(rot_tolerance)
+			else:
+				rot_reached = abs(rotation - (original_rotation - patrol_rotation_angle)) < deg_to_rad(rot_tolerance)
+			if rot_reached:
 				rotation_state = 2
 				%RotateTimer.start()
 		3:
 			rotate(patrol_rotation_speed * delta)
-			if rotation >= original_rotation + patrol_rotation_angle:
+			if abs(rotation - (original_rotation - patrol_rotation_angle)) > deg_to_rad(360):
+				rot_reached = abs(rotation - (original_rotation + patrol_rotation_angle)) - deg_to_rad(360) < deg_to_rad(rot_tolerance)
+			else:
+				rot_reached = abs(rotation - (original_rotation + patrol_rotation_angle)) < deg_to_rad(rot_tolerance)
+			if rot_reached:
 				rotation_state = 4
 				%RotateTimer.start()
 
