@@ -3,7 +3,6 @@ extends Node2D
 var pearls_collected = 0
 var final_artefact_collected = false
 
-
 func _run_once():
 	set_patrol_state()
 	%LevelPassed.visible = false
@@ -35,3 +34,12 @@ func _on_gloves_artefact_picked_up():
 
 func _on_run_once_timer_timeout():
 	_run_once()
+
+
+func _input(_event):
+	if Input.is_action_just_pressed("escape"):
+		pause_game()
+		
+func pause_game():
+	$PauseMenuLayer.visible = true
+	get_tree().paused = true

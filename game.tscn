@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://df2rwh4ynvmlp"]
+[gd_scene load_steps=17 format=3 uid="uid://df2rwh4ynvmlp"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_bwj84"]
 [ext_resource type="PackedScene" uid="uid://dt2og71is61y1" path="res://portal/blue_portal_anim.tscn" id="2_dku8n"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
 [ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="8_pl02a"]
 [ext_resource type="PackedScene" uid="uid://bd5cb00jovd23" path="res://pickups/gloves/gloves.tscn" id="9_vq7ia"]
+[ext_resource type="Script" path="res://PauseMenu.gd" id="10_1wiu3"]
+[ext_resource type="Script" path="res://PauseNode.gd" id="11_2dylc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_l3yi0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1078,6 +1080,7 @@ text = "Level passed!"
 
 [node name="LevelFailed" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 layer = 128
 visible = false
 
@@ -1199,8 +1202,65 @@ scale = Vector2(0.0874657, 0.0902076)
 theme_override_font_sizes/font_size = 100
 text = "Get the artefact...                    and leave through the portal!"
 
+[node name="PauseMenuLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PauseMenu" type="Control" parent="PauseMenuLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("10_1wiu3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -50.5
+offset_right = 56.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Paused"
+
+[node name="ResumeButton" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="QuitToMenuButton" type="Button" parent="PauseMenuLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit To Menu"
+
+[node name="PauseNode" type="Node" parent="."]
+process_mode = 2
+script = ExtResource("11_2dylc")
+
 [connection signal="timeout" from="RunOnceTimer" to="." method="_on_run_once_timer_timeout"]
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
 [connection signal="health_depleted" from="StealthChar" to="." method="_on_stealth_char_health_depleted"]
 [connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]
 [connection signal="artefact_picked_up" from="Gloves" to="." method="_on_gloves_artefact_picked_up"]
+[connection signal="pressed" from="PauseMenuLayer/PauseMenu/VBoxContainer/ResumeButton" to="PauseMenuLayer/PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenuLayer/PauseMenu/VBoxContainer/RestartButton" to="PauseMenuLayer/PauseMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseMenuLayer/PauseMenu/VBoxContainer/QuitToMenuButton" to="PauseMenuLayer/PauseMenu" method="_on_quit_to_menus_button_pressed"]
