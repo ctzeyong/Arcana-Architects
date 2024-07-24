@@ -1,37 +1,39 @@
 extends CharacterBody2D
 
 #@onready var player = get_node("/root/@Node2D@7/StealthChar")
-@onready var original_position = global_position
-@onready var original_rotation = rotation
+@onready var original_position := global_position
+@onready var original_rotation := rotation
 
 var player_pos = null
 var player = null
 var visual_box = null
 var last_rotation
-const angle_cone_of_vision = deg_to_rad(95.0)
-const max_view_distance = 97.0
-const angle_between_rays = deg_to_rad(5)
-const rotation_speed = 5.0
-const patrol_rotation_speed = 0.8
-const walking_rotation_speed = 4.0
-const chase_speed = 9000
-const walk_speed = 3000
+const angle_cone_of_vision := deg_to_rad(94.0)
+const max_view_distance := 120.0
+const angle_between_rays := deg_to_rad(2)
+const rotation_speed := 5.0
+const patrol_rotation_speed := 0.8
+const walking_rotation_speed := 4.0
+const chase_speed := 9000
+const walk_speed := 3000
+const rot_tolerance := 1.0
+const pos_tolerance := 2.0
 
-const LIGHT_CYAN = Color(0.878431, 1, 1, 0.1)
-const LIGHT_CORAL = Color(0.941176, 0.501961, 0.501961, 0.1)
-const GOLD = Color(1, 0.843137, 0, 0.1)
+const LIGHT_CYAN := Color(0.878431, 1, 1, 0.1)
+const LIGHT_CORAL := Color(0.941176, 0.501961, 0.501961, 0.1)
+const GOLD := Color(1, 0.843137, 0, 0.1)
 
 enum State { PATROL, INVESTIGATE, SEEK, CHASE, LOST_SIGHT, RETURN }
-var state = State.PATROL
+var state := State.PATROL
 
 enum P_State { STATIC, ROTATE, FOLLOW_PATH }
-var p_state = P_State.STATIC
+var p_state := P_State.STATIC
 
-var rotation_state = 1
-var patrol_rotation_angle = deg_to_rad(60.0)
+var rotation_state := 1
+var patrol_rotation_angle := deg_to_rad(60.0)
 
-var raycasts = []
-var raycast_points = []
+#var raycasts = []
+var raycast_points: PackedVector2Array = []
 
 func _ready():
 	player = Global.player
@@ -42,6 +44,7 @@ func _ready():
 	visual_box = Global.visual_box
 	generate_raycasts()
 	%GuardAnim.idle_right_anim()
+	
 
 func set_rotate_patrol(angle): # called by game scene
 	p_state = P_State.ROTATE
@@ -52,7 +55,7 @@ func set_rotate_patrol(angle): # called by game scene
 func generate_raycasts(): # many raycasts as cone of sight
 	var ray_count = angle_cone_of_vision / angle_between_rays
 	
-	for i in ray_count:
+	for i in (ray_count + 1):
 		var ray = RayCast2D.new()
 		var angle = angle_between_rays * (i - ray_count / 2.0)
 		ray.target_position = Vector2.RIGHT.rotated(angle) * max_view_distance # starting position face right
@@ -67,15 +70,7 @@ func generate_raycasts(): # many raycasts as cone of sight
 func _physics_process(delta):
 	move_and_slide()
 	
-	#raycast_points.clear()
-	#for ray in get_children():
-		#if ray is RayCast2D:
-			#if ray.is_colliding():
-				#raycast_points.append(ray.get_collision_point())
-			#else:
-				#raycast_points.append(ray.global_position + ray.target_position)
-	#
-	#queue_redraw()
+	draw_sight_cone()
 	
 	match state:
 		State.PATROL:
@@ -102,7 +97,7 @@ func _physics_process(delta):
 				player_pos = player.global_position
 				%NavigationAgent2D.target_position = player_pos
 			var current_pos = global_position
-			var pos_reached = current_pos.distance_to(player_pos) < 5
+			var pos_reached = current_pos.distance_to(player_pos) < pos_tolerance
 			if pos_reached:
 				position = player_pos
 				velocity = Vector2.ZERO
@@ -159,19 +154,32 @@ func _physics_process(delta):
 
 
 func seek_player(delta):
+	%GuardAnim.idle_right_anim()
+	var rot_reached
 	match rotation_state:
 		1:
 			print("1")
 			rotate(-patrol_rotation_speed * delta)
-			if rotation <= last_rotation - patrol_rotation_angle:
+			if abs(rotation - (last_rotation - deg_to_rad(60))) > deg_to_rad(360):
+				rot_reached = abs(rotation - (last_rotation - deg_to_rad(60))) - deg_to_rad(360) < deg_to_rad(rot_tolerance)
+			else:
+				rot_reached = abs(rotation - (last_rotation - deg_to_rad(60))) < deg_to_rad(rot_tolerance)
+			if rot_reached:
 				rotation_state = 2
 				%SeekTimer.start()
 		3:
 			print("3")
 			rotate(patrol_rotation_speed * delta)
-			if rotation >= original_rotation + patrol_rotation_angle:
+			if abs(rotation - (last_rotation - deg_to_rad(60))) > deg_to_rad(360):
+				rot_reached = abs(rotation - (last_rotation - deg_to_rad(60))) - deg_to_rad(360) < deg_to_rad(rot_tolerance)
+			else:
+				rot_reached = abs(rotation - (last_rotation - deg_to_rad(60))) < deg_to_rad(rot_tolerance)
+			if rot_reached:
 				rotation_state = 4
 				%SeekTimer.start()
+			#if rotation >= original_rotation + deg_to_rad(60):
+				#rotation_state = 4
+				#%SeekTimer.start()
 
 func _on_seek_timer_timeout():
 	match rotation_state:
@@ -235,20 +243,20 @@ func return_to_original(delta):
 	var direction
 	var angle_to
 	var current_pos = global_position
-	var pos_reached = current_pos.distance_to(original_position) < 5
-	var rot_reached = abs(rotation - original_rotation) < deg_to_rad(5)
+	var pos_reached = current_pos.distance_to(original_position) < 2
+	var rot_reached = abs(rotation - original_rotation) < deg_to_rad(2)
 	
 	if pos_reached:
 		print("area")
 		%GuardAnim.idle_right_anim()
-		velocity = Vector2(0, 0)
+		velocity = Vector2.ZERO
 		if rot_reached:
 			position = original_position
 			rotation = original_rotation
 			state = State.PATROL
 			return
 		angle_to = original_rotation - rotation
-		rotate(sign(angle_to) * min(delta * walking_rotation_speed, abs(angle_to)))
+		rotate(sign(angle_to) * min(delta * patrol_rotation_speed, abs(angle_to)))
 		return
 	
 	%NavigationAgent2D.target_position = original_position
@@ -264,15 +272,24 @@ func return_to_original(delta):
 
 
 func rotate_patrol(delta):
+	var rot_reached
 	match rotation_state:
 		1:
 			rotate(-patrol_rotation_speed * delta)
-			if rotation <= original_rotation - patrol_rotation_angle:
+			if abs(rotation - (original_rotation - patrol_rotation_angle)) >= deg_to_rad(360):
+				rot_reached = abs(rotation - (original_rotation - patrol_rotation_angle)) - deg_to_rad(360) < deg_to_rad(rot_tolerance)
+			else:
+				rot_reached = abs(rotation - (original_rotation - patrol_rotation_angle)) < deg_to_rad(rot_tolerance)
+			if rot_reached:
 				rotation_state = 2
 				%RotateTimer.start()
 		3:
 			rotate(patrol_rotation_speed * delta)
-			if rotation >= original_rotation + patrol_rotation_angle:
+			if abs(rotation - (original_rotation - patrol_rotation_angle)) > deg_to_rad(360):
+				rot_reached = abs(rotation - (original_rotation + patrol_rotation_angle)) - deg_to_rad(360) < deg_to_rad(rot_tolerance)
+			else:
+				rot_reached = abs(rotation - (original_rotation + patrol_rotation_angle)) < deg_to_rad(rot_tolerance)
+			if rot_reached:
 				rotation_state = 4
 				%RotateTimer.start()
 
@@ -290,15 +307,20 @@ func _on_attack_box_body_entered(body):
 		body.take_damage(1000)
 
 
-#func _draw():
-	#draw_sight_cone()
-#
-#
-#func draw_sight_cone():
+func _draw():
+	draw_sight_cone()
+
+
+func draw_sight_cone():
 	#print("draw")
-	#var global_pos = global_position
-	#var points = [global_pos] + raycast_points + [global_pos]
-	#var color = Color(1, 1, 1, 0.3)
-	#
-	#draw_colored_polygon(points, color)
+	raycast_points.clear()
+	raycast_points.append(Vector2.ZERO)
+	for ray in get_children():
+		if ray is RayCast2D:
+			if ray.is_colliding():
+				raycast_points.append(to_local(ray.get_collision_point()))
+			else:
+				raycast_points.append(ray.target_position)
+	#%SightCone.set_rotation(-original_rotation)
+	%SightCone.set_polygon(raycast_points) 
 
