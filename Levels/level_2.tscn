@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://daqy4t6d8uv0t"]
+[gd_scene load_steps=6 format=3 uid="uid://daqy4t6d8uv0t"]
 
 [ext_resource type="PackedScene" uid="uid://cm5r1wi0y1u3d" path="res://v2 char/stealth_char.tscn" id="1_8swxy"]
 [ext_resource type="Texture2D" uid="uid://cuvljtwehoxkq" path="res://Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="1_bu83p"]
 [ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="2_4raxs"]
-[ext_resource type="PackedScene" uid="uid://cot7k26iuw23b" path="res://test_enemy.tscn" id="4_somtk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkrwp"]
 texture = ExtResource("1_bu83p")
@@ -318,5 +317,5 @@ position = Vector2(118, 127)
 position = Vector2(118, 15)
 rotation = 1.5708
 
-[node name="TestEnemy" parent="." instance=ExtResource("4_somtk")]
-position = Vector2(271, 74)
+[node name="Guard2" parent="." instance=ExtResource("2_4raxs")]
+position = Vector2(260, 74)
