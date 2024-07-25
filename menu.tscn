@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://menu.gd" id="1_mypqg"]
 [ext_resource type="Texture2D" uid="uid://qyto60nr6jve" path="res://background/background.jpg" id="2_rvnpr"]
 [ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://button default.tres" id="3_wmnhn"]
-[ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://HelvetiPixel.ttf" id="4_l3lrp"]
+[ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://background elements/HelvetiPixel.ttf" id="4_l3lrp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rf04"]
 
