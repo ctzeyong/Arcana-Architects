@@ -24,7 +24,7 @@ func _on_restart_button_pressed():
 
 func _on_quit_to_menu_button_pressed():
 	resume()
-	get_tree().change_scene_to_file("../Menu")
+	get_tree().change_scene_to_file("res://Menu.gd")
 
 func _process(delta):
 	test_esc()
