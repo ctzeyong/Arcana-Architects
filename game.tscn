@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://df2rwh4ynvmlp"]
+[gd_scene load_steps=19 format=3 uid="uid://df2rwh4ynvmlp"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_bwj84"]
 [ext_resource type="PackedScene" uid="uid://dt2og71is61y1" path="res://portal/blue_portal_anim.tscn" id="2_dku8n"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cuvljtwehoxkq" path="res://Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="4_01w16"]
 [ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://purple_pearl.tscn" id="4_51svo"]
 [ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://portal/purple_portal.tscn" id="5_70s1l"]
+[ext_resource type="Script" path="res://LevelPassed.gd" id="7_2j3c8"]
 [ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
+[ext_resource type="Script" path="res://LevelFailed.gd" id="8_4704x"]
 [ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="8_pl02a"]
 [ext_resource type="PackedScene" uid="uid://bd5cb00jovd23" path="res://pickups/gloves/gloves.tscn" id="9_vq7ia"]
 [ext_resource type="Script" path="res://PauseMenu.gd" id="10_1wiu3"]
@@ -1061,6 +1063,7 @@ position = Vector2(572, 294)
 unique_name_in_owner = true
 layer = 100
 visible = false
+script = ExtResource("7_2j3c8")
 
 [node name="ColorRect" type="ColorRect" parent="LevelPassed"]
 offset_right = 40.0
@@ -1078,11 +1081,28 @@ scale = Vector2(0.00461573, 0.0132875)
 theme_override_font_sizes/font_size = 100
 text = "Level passed!"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelPassed"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RestartButton" type="Button" parent="LevelPassed/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="NextLevelButton" type="Button" parent="LevelPassed/VBoxContainer"]
+layout_mode = 2
+text = "Next Level"
+
+[node name="MenuButton" type="Button" parent="LevelPassed/VBoxContainer"]
+layout_mode = 2
+text = "Back To Menu"
+
 [node name="LevelFailed" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
 layer = 128
 visible = false
+script = ExtResource("8_4704x")
 
 [node name="ColorRect" type="ColorRect" parent="LevelFailed"]
 offset_left = -65.0
@@ -1101,6 +1121,18 @@ scale = Vector2(0.505031, 0.480276)
 theme_override_font_sizes/font_size = 100
 text = "Level failed!"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelFailed"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RestartButton" type="Button" parent="LevelFailed/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="MenuButton" type="Button" parent="LevelFailed/VBoxContainer"]
+layout_mode = 2
+text = "Back To Menu"
+
 [node name="UserInterface" type="CanvasLayer" parent="."]
 visible = false
 
@@ -1117,32 +1149,6 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 script = ExtResource("7_u3tdg")
-
-[node name="Menu" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
-layout_mode = 0
-offset_right = 70.0
-offset_bottom = 101.0
-alignment = 1
-metadata/_edit_group_ = true
-
-[node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
-layout_mode = 2
-text = "Start"
-
-[node name="OptionsButton" type="Button" parent="Menu/VBoxContainer"]
-layout_mode = 2
-text = "Options"
-
-[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
-layout_mode = 2
-text = "Quit"
 
 [node name="Gloves" parent="." instance=ExtResource("9_vq7ia")]
 position = Vector2(361, 312)
@@ -1260,6 +1266,11 @@ script = ExtResource("11_2dylc")
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
 [connection signal="health_depleted" from="StealthChar" to="." method="_on_stealth_char_health_depleted"]
 [connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]
+[connection signal="pressed" from="LevelPassed/VBoxContainer/RestartButton" to="LevelPassed" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="LevelPassed/VBoxContainer/NextLevelButton" to="LevelPassed" method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="LevelPassed/VBoxContainer/MenuButton" to="LevelPassed" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="LevelFailed/VBoxContainer/RestartButton" to="LevelFailed" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="LevelFailed/VBoxContainer/MenuButton" to="LevelFailed" method="_on_menu_button_pressed"]
 [connection signal="artefact_picked_up" from="Gloves" to="." method="_on_gloves_artefact_picked_up"]
 [connection signal="pressed" from="PauseMenuLayer/PauseMenu/VBoxContainer/ResumeButton" to="PauseMenuLayer/PauseMenu" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenuLayer/PauseMenu/VBoxContainer/RestartButton" to="PauseMenuLayer/PauseMenu" method="_on_restart_button_pressed"]
