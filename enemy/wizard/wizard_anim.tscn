@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://be1se5nji30gi"]
+
+[ext_resource type="Script" path="res://WizardAnim.gd" id="1_dxsp8"]
+[ext_resource type="Texture2D" uid="uid://bje3ymbseul4i" path="res://enemy/wizard/wizardspritesheet.png" id="2_nk0fi"]
+
+[sub_resource type="Animation" id="Animation_oy2pd"]
+resource_name = "walk"
+length = 1.2
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 1, 0, 1, 2, 3, 4, 3]
+}
+
+[sub_resource type="Animation" id="Animation_4vmep"]
+resource_name = "attack"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 5, 2, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axa6n"]
+_data = {
+"attack": SubResource("Animation_4vmep"),
+"walk": SubResource("Animation_oy2pd")
+}
+
+[node name="WizardAnim" type="Node2D"]
+script = ExtResource("1_dxsp8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_nk0fi")
+hframes = 5
+vframes = 2
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_axa6n")
+}

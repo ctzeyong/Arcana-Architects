@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://LevelPassed.gd" id="7_2j3c8"]
 [ext_resource type="Script" path="res://PearlsCollected.gd" id="7_u3tdg"]
 [ext_resource type="Script" path="res://LevelFailed.gd" id="8_4704x"]
-[ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://guard/guard.tscn" id="8_pl02a"]
+[ext_resource type="PackedScene" uid="uid://cwta5hpjw753i" path="res://enemy/guard/guard.tscn" id="8_pl02a"]
 [ext_resource type="PackedScene" uid="uid://bd5cb00jovd23" path="res://pickups/gloves/gloves.tscn" id="9_vq7ia"]
 [ext_resource type="Script" path="res://PauseMenu.gd" id="10_1wiu3"]
 [ext_resource type="Script" path="res://PauseNode.gd" id="11_2dylc"]

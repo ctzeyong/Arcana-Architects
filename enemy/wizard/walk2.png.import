@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1ofye0hk7gyl"
-path="res://.godot/imported/guardspritesheet.png-0a799d3e8f488e3096a27c27bca9383c.ctex"
+uid="uid://hovj1myctcxt"
+path="res://.godot/imported/walk2.png-08ddee56888f2094e7378423c2106127.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guard/guardspritesheet.png"
-dest_files=["res://.godot/imported/guardspritesheet.png-0a799d3e8f488e3096a27c27bca9383c.ctex"]
+source_file="res://enemy/wizard/walk2.png"
+dest_files=["res://.godot/imported/walk2.png-08ddee56888f2094e7378423c2106127.ctex"]
 
 [params]
 
