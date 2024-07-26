@@ -1077,9 +1077,9 @@ color = Color(0.306, 0.85, 0.578, 0.254902)
 
 [node name="Label" type="Label" parent="LevelPassed/ColorRect"]
 layout_mode = 0
-offset_left = 4.39175
+offset_left = 3.57883
 offset_top = 7.40286
-offset_right = 895.392
+offset_right = 894.579
 offset_bottom = 179.403
 scale = Vector2(0.00461573, 0.0132875)
 theme_override_fonts/font = ExtResource("14_kemal")
@@ -1087,10 +1087,17 @@ theme_override_font_sizes/font_size = 200
 text = "Level passed!"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelPassed"]
-offset_left = 522.0
-offset_top = 359.0
-offset_right = 762.0
-offset_bottom = 499.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = 11.0
+offset_right = 118.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="RestartButton" type="Button" parent="LevelPassed/VBoxContainer"]
 layout_mode = 2
@@ -1134,10 +1141,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -210.0
-offset_top = -90.0
-offset_right = 593.0
-offset_bottom = 82.0
+offset_left = -188.0
+offset_top = -88.0
+offset_right = 615.0
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.505031, 0.480276)
@@ -1151,12 +1158,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = 29.0
-offset_right = 39.0
-offset_bottom = 95.0
+offset_left = -120.0
+offset_top = 15.0
+offset_right = 120.0
+offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="RestartButton" type="Button" parent="LevelFailed/VBoxContainer"]
 layout_mode = 2
@@ -1216,7 +1225,8 @@ offset_top = 46.0
 offset_right = 2015.0
 offset_bottom = 183.0
 scale = Vector2(0.0755193, 0.0773901)
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("14_kemal")
+theme_override_font_sizes/font_size = 150
 text = "\"WASD\" to move your character
 "
 
@@ -1226,7 +1236,8 @@ offset_top = 290.0
 offset_right = 1541.0
 offset_bottom = 427.0
 scale = Vector2(0.0841259, 0.0880596)
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("14_kemal")
+theme_override_font_sizes/font_size = 150
 text = "Avoid guards, they will kill you!"
 
 [node name="Label" type="Label" parent="."]
@@ -1235,7 +1246,8 @@ offset_top = 35.0
 offset_right = 2030.0
 offset_bottom = 172.0
 scale = Vector2(0.0751277, 0.0781285)
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("14_kemal")
+theme_override_font_sizes/font_size = 150
 text = "\"Shift\" to dash, but it may alert guards!"
 
 [node name="Label2" type="Label" parent="."]
@@ -1244,7 +1256,8 @@ offset_top = 275.0
 offset_right = 3117.0
 offset_bottom = 412.0
 scale = Vector2(0.0874657, 0.0902076)
-theme_override_font_sizes/font_size = 100
+theme_override_fonts/font = ExtResource("14_kemal")
+theme_override_font_sizes/font_size = 150
 text = "Get the artefact...                    and leave through the portal!"
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
