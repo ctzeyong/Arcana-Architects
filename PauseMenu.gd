@@ -1,7 +1,5 @@
 extends Control
 
-var main_menu = preload("res://menu.tscn").instantiate()
-
 func resume():
 	get_tree().paused = false
 
@@ -29,8 +27,7 @@ func _on_restart_button_pressed():
 func _on_quit_to_menu_button_pressed():
 	resume()
 	$"..".visible = false
-	get_tree().change_scene_to_file(main_menu)
-
+	get_tree().change_scene_to_file("res://menu.tscn")
+	
 func _process(delta):
 	test_esc()
-

@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" path="res://menu.gd" id="1_mypqg"]
 [ext_resource type="Texture2D" uid="uid://qyto60nr6jve" path="res://background/background.jpg" id="2_rvnpr"]
-[ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://button default.tres" id="3_wmnhn"]
+[ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://background elements/button default.tres" id="3_wmnhn"]
 [ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://background elements/HelvetiPixel.ttf" id="4_l3lrp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rf04"]
 
 [node name="Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,6 +70,7 @@ size_flags_vertical = 3
 focus_neighbor_top = NodePath("../QuitButton")
 theme = ExtResource("3_wmnhn")
 theme_override_fonts/font = ExtResource("4_l3lrp")
+theme_override_font_sizes/font_size = 50
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="VBox Container"]
@@ -76,6 +78,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_wmnhn")
 theme_override_fonts/font = ExtResource("4_l3lrp")
+theme_override_font_sizes/font_size = 50
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBox Container"]
@@ -84,6 +87,7 @@ size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../StartButton")
 theme = ExtResource("3_wmnhn")
 theme_override_fonts/font = ExtResource("4_l3lrp")
+theme_override_font_sizes/font_size = 50
 text = "Quit"
 
 [connection signal="pressed" from="VBox Container/StartButton" to="." method="_on_start_button_pressed"]
