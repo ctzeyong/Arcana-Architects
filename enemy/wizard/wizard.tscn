@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://u50hqpiog58w"]
+
+[ext_resource type="PackedScene" uid="uid://be1se5nji30gi" path="res://enemy/wizard/wizard_anim.tscn" id="1_c5jxl"]
+[ext_resource type="Script" path="res://enemy/wizard/wizard.gd" id="1_onxqr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lylpc"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqo04"]
+radius = 120.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4ocb"]
+radius = 11.0
+
+[node name="Wizard" type="CharacterBody2D"]
+collision_layer = 144
+collision_mask = 17
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_onxqr")
+
+[node name="WizardAnim" parent="." instance=ExtResource("1_c5jxl")]
+unique_name_in_owner = true
+scale = Vector2(2.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lylpc")
+
+[node name="DetectBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox"]
+shape = SubResource("CircleShape2D_tqo04")
+
+[node name="AlertBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlertBox"]
+shape = SubResource("CircleShape2D_r4ocb")
+
+[node name="RotateTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="SeekTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="SightCone" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
+[connection signal="timeout" from="SeekTimer" to="." method="_on_seek_timer_timeout"]

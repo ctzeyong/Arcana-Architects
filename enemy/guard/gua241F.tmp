@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://cwta5hpjw753i"]
 
-[ext_resource type="Script" path="res://guard/guard.gd" id="1_2qko4"]
-[ext_resource type="PackedScene" uid="uid://bktsqmld6r600" path="res://guard/guard_anim.tscn" id="1_24ljv"]
+[ext_resource type="Script" path="res://enemy/guard/guard.gd" id="1_2qko4"]
+[ext_resource type="PackedScene" uid="uid://bktsqmld6r600" path="res://enemy/guard/guard_anim.tscn" id="1_24ljv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8w7pb"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_284q3"]
-radius = 110.0
+radius = 120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j0onp"]
 radius = 11.0
@@ -60,11 +60,6 @@ unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
 
-[node name="ChaseTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 5.0
-one_shot = true
-
 [node name="SeekTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
@@ -80,5 +75,4 @@ unique_name_in_owner = true
 
 [connection signal="body_entered" from="AttackBox" to="." method="_on_attack_box_body_entered"]
 [connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
-[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
 [connection signal="timeout" from="SeekTimer" to="." method="_on_seek_timer_timeout"]

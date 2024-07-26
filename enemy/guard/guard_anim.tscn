@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bktsqmld6r600"]
 
-[ext_resource type="Script" path="res://guard/guard_anim.gd" id="1_7p6cg"]
-[ext_resource type="Texture2D" uid="uid://c1ofye0hk7gyl" path="res://guard/guardspritesheet.png" id="1_q0i1m"]
+[ext_resource type="Script" path="res://enemy/guard/guard_anim.gd" id="1_7p6cg"]
+[ext_resource type="Texture2D" uid="uid://c1ofye0hk7gyl" path="res://enemy/guard/guardspritesheet.png" id="1_q0i1m"]
 
 [sub_resource type="Animation" id="Animation_2mmiu"]
 resource_name = "idle_down"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u4owji06yor3"
-path="res://.godot/imported/down3.png-64bd00bf70e382ef59ad0f526ddeb3d4.ctex"
+uid="uid://ci10magec2fuy"
+path="res://.godot/imported/wizardwalkss.png-d55c93fe480e712dc19fe8fa9afc5075.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guard/down3.png"
-dest_files=["res://.godot/imported/down3.png-64bd00bf70e382ef59ad0f526ddeb3d4.ctex"]
+source_file="res://enemy/wizard/wizardwalkss.png"
+dest_files=["res://.godot/imported/wizardwalkss.png-d55c93fe480e712dc19fe8fa9afc5075.ctex"]
 
 [params]
 

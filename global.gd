@@ -2,7 +2,7 @@ extends Node
 
 var player = null
 var visual_box = null
-var gloves_equipped := false
+var gloves_equipped := true
 
 # Store the previous scene's path
 var previous_scene = ""
@@ -16,3 +16,4 @@ func change_scene(scene_path):
 func go_back_to_previous_scene():
 	if previous_scene != "":
 		get_tree().change_scene_to_file(previous_scene)
+
