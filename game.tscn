@@ -1015,6 +1015,7 @@ y_sort_enabled = true
 script = ExtResource("1_bwj84")
 
 [node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
 tile_set = SubResource("TileSet_cce22")
 format = 2
 layer_0/name = "1 Ground"
@@ -1273,6 +1274,9 @@ text = "Quit To Menu"
 [node name="PauseNode" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("11_2dylc")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(64, 0)
 
 [connection signal="timeout" from="RunOnceTimer" to="." method="_on_run_once_timer_timeout"]
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]

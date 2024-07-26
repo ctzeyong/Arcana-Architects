@@ -1,24 +1,27 @@
 extends CharacterBody2D
 
-const BASE_SPEED = 5000
-const SPRINT_MULTIPLIER = 2
-const ALERTBOX_RADIUS = 10
-const ALERTBOX_MULTIPLER = 4
-var last_direction = 0 
+const BASE_SPEED := 5000
+const SPRINT_MULTIPLIER := 2.0
+const ALERTBOX_RADIUS := 10.0
+const ALERTBOX_MULTIPLER := 4.0
+var last_direction := 0 
 # to decide idle animation, 0 1 2 3 correspond to up down left right 
-var health = 100.0
+var health := 100.0
+var item_has_charge := true
 
 signal health_depleted
 
 func _ready():
 	Global.player = self
 	Global.visual_box = %VisualBox
+	%ItemTimer.start()
+	%ItemTimer.set_paused(true)
 
 func _physics_process(delta):
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	# map wasd to character movement
-	var speed = BASE_SPEED
-	var is_sprinting = Input.is_action_pressed("sprint_active")
+	var speed := BASE_SPEED
+	var is_sprinting := Input.is_action_pressed("sprint_active")
 	# detect if shift key is held down
 	if is_sprinting:
 		speed *= SPRINT_MULTIPLIER
@@ -72,15 +75,19 @@ func _physics_process(delta):
 				%StealthCharAnim.idle_left_anim()
 			3:
 				%StealthCharAnim.idle_right_anim()
-
+	
 	move_and_slide()
 	
-	#var guard_overlap = %HitBox.get_overlapping_bodies() # Layer 8 instant death
-	#if guard_overlap.size() > 0:
-		#health -= 1000 * delta
-		#print("damage")
-	#if health <= 0:
-		#health_depleted.emit()
+	#if item_has_charge:
+		#if Input.is_action_pressed("use_item"):
+			#set_collision_mask_value(1, false)
+			#%ItemTimer.set_paused(false)
+		#else:
+			#set_collision_mask_value(1, true)
+			#%ItemTimer.set_paused(true)
+	#else:
+		#set_collision_mask_value(1, true)
+
 
 func take_damage(dmg):
 	print("damage")
@@ -88,3 +95,8 @@ func take_damage(dmg):
 	if health <= 0:
 		print("death")
 		health_depleted.emit()
+
+
+func _on_item_timer_timeout():
+	item_has_charge = false
+	print("no charge")

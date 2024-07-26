@@ -8,13 +8,13 @@ var player_pos = null
 var player = null
 var visual_box = null
 var last_rotation
-const angle_cone_of_vision := deg_to_rad(90.0)
+const angle_cone_of_vision := deg_to_rad(96.0)
 const max_view_distance := 110.0
 const angle_between_rays := deg_to_rad(3)
 const rotation_speed := 5.0
 const patrol_rotation_speed := 0.8
 const walking_rotation_speed := 4.0
-const chase_speed := 5000
+const chase_speed := 8000
 const walk_speed := 3000
 const rot_tolerance := 1.0
 const pos_tolerance := 2.0
