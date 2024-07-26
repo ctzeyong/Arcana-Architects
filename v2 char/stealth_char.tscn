@@ -45,3 +45,10 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisualBox"]
 shape = SubResource("CircleShape2D_kef13")
 debug_color = Color(0.366914, 0.599817, 0.406265, 0.42)
+
+[node name="ItemTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="ItemTimer" to="." method="_on_item_timer_timeout"]
