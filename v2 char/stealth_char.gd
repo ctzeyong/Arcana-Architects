@@ -16,6 +16,8 @@ func _ready():
 	Global.visual_box = %VisualBox
 	%ItemTimer.start()
 	%ItemTimer.set_paused(true)
+	$HealthBar.visible = false
+	$ItemCharge.visible = false
 
 func _physics_process(delta):
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -77,6 +79,10 @@ func _physics_process(delta):
 				%StealthCharAnim.idle_right_anim()
 	
 	move_and_slide()
+	$ItemCharge.text = str(Global.gloves_unlock_left)
+	if Input.is_action_just_pressed("use_item"):
+		$ItemCharge.visible = true
+		$ChargeTimer.start()
 	
 	#if item_has_charge:
 		#if Input.is_action_pressed("use_item"):
@@ -92,6 +98,9 @@ func _physics_process(delta):
 func take_damage(dmg):
 	print("damage")
 	health -= dmg
+	$HealthBar.value = health
+	$HealthBar.visible = true
+	$HPTimer.start()
 	if health <= 0:
 		print("death")
 		health_depleted.emit()
@@ -100,3 +109,11 @@ func take_damage(dmg):
 func _on_item_timer_timeout():
 	item_has_charge = false
 	print("no charge")
+
+
+func _on_hp_timer_timeout():
+	$HealthBar.visible = false
+
+
+func _on_charge_timer_timeout():
+	$ItemCharge.visible = false

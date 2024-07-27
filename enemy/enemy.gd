@@ -23,9 +23,9 @@ var pos_tolerance : float = 2.0
 
 var ammo_loaded : bool = true
 
-const LIGHT_CYAN := Color(0.878431, 1, 1, 0.1)
-const LIGHT_CORAL := Color(0.941176, 0.501961, 0.501961, 0.1)
-const GOLD := Color(1, 0.843137, 0, 0.1)
+const LIGHT_CYAN := Color(0.878431, 1, 1, 0.15)
+const LIGHT_CORAL := Color(0.941176, 0.501961, 0.501961, 0.15)
+const GOLD := Color(1, 0.843137, 0, 0.15)
 
 enum State { PATROL, INVESTIGATE, SEEK, CHASE, LOST_SIGHT, ATTACK, RETURN }
 var state := State.PATROL
