@@ -13,7 +13,7 @@ radius = 120.0
 radius = 11.0
 
 [node name="Wizard" type="CharacterBody2D"]
-collision_layer = 144
+collision_layer = 208
 collision_mask = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -52,11 +52,21 @@ unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
 
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+
 [node name="SightCone" type="Polygon2D" parent="."]
 unique_name_in_owner = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
 
+[node name="Marker2D" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(10, 8)
+
 [connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]
 [connection signal="timeout" from="SeekTimer" to="." method="_on_seek_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

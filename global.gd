@@ -2,7 +2,8 @@ extends Node
 
 var player = null
 var visual_box = null
-var gloves_equipped := true
+var gloves_equipped : bool = true
+var gloves_unlock_left : int = 3
 
 # Store the previous scene's path
 var previous_scene = ""

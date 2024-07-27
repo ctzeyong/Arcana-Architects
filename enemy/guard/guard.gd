@@ -18,7 +18,7 @@ func _ready():
 	patrol_rotation_speed = 0.8
 	walking_rotation_speed = 4.0
 	chase_speed = 8000
-	walk_speed = 4000
+	walk_speed = 3500
 	rot_tolerance = 1.0
 	pos_tolerance = 2.0
 	
