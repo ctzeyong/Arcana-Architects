@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy3sohxa5snuf"]
+
+[ext_resource type="Texture2D" uid="uid://klhnsfn464rk" path="res://enemy/wizard/orb.png" id="1_jbkfm"]
+[ext_resource type="Script" path="res://enemy/wizard/wizard_orb.gd" id="1_nfhx8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7l4o"]
+radius = 8.0
+
+[node name="WizardOrb" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_nfhx8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_jbkfm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r7l4o")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -18,7 +18,7 @@ func _ready():
 	patrol_rotation_speed = 0.8
 	walking_rotation_speed = 4.0
 	chase_speed = 4000
-	walk_speed = 4000
+	walk_speed = 3500
 	rot_tolerance = 1.0
 	pos_tolerance = 2.0
 	
@@ -26,6 +26,7 @@ func _ready():
 	p_state = P_State.STATIC
 	
 	generate_raycasts()
+	generate_attack_raycasts()
 	%WizardAnim.idle_anim()
 	
 	%DetectBox/CollisionShape2D.shape.set_radius(max_view_distance)
@@ -37,7 +38,7 @@ func _physics_process(delta):
 	
 	match state:
 		State.PATROL:
-			print("PATROL")
+			#print("PATROL")
 			velocity = Vector2.ZERO
 			%SightCone.set_color(LIGHT_CYAN)
 			%WizardAnim.idle_anim()
@@ -55,7 +56,7 @@ func _physics_process(delta):
 				P_State.ROTATE:
 					rotate_patrol(delta)
 		State.INVESTIGATE:
-			print("INVESTIGATE")
+			#print("INVESTIGATE")
 			%SightCone.set_color(GOLD)
 			%WizardAnim.walk_anim()
 			investigate_player(delta)
@@ -67,7 +68,7 @@ func _physics_process(delta):
 				player_pos = player.global_position
 				%NavigationAgent2D.target_position = player_pos
 		State.SEEK:
-			print("SEEK")
+			#print("SEEK")
 			%SightCone.set_color(GOLD)
 			%WizardAnim.idle_anim()
 			seek_player(delta)
@@ -79,15 +80,17 @@ func _physics_process(delta):
 				state = State.INVESTIGATE
 				%SeekTimer.stop()
 		State.CHASE:
-			print("CHASE")
+			#print("CHASE")
 			%SightCone.set_color(LIGHT_CORAL)
 			%WizardAnim.walk_anim()
 			chase_player(delta)
+			if player_in_attack_range(delta):
+				state = State.ATTACK
+				return
 			if !detect_player(delta):
 				state = State.LOST_SIGHT
-				#%ChaseTimer.start()
 		State.LOST_SIGHT:
-			print("LOST SIGHT")
+			#print("LOST SIGHT")
 			%SightCone.set_color(LIGHT_CORAL)
 			if lost_player(delta):
 				state = State.SEEK
@@ -96,13 +99,19 @@ func _physics_process(delta):
 			chase_player(delta)
 			if detect_player(delta):
 				state = State.CHASE
-				#%ChaseTimer.stop()
 				return
 			if %AlertBox.get_overlapping_areas():
 				state = State.INVESTIGATE
 				return
+		State.ATTACK:
+			#print("ATTACK")
+			attack_player(delta)
+			if !player_in_attack_range(delta):
+				state = State.CHASE
+			if !detect_player(delta):
+				state = State.LOST_SIGHT
 		State.RETURN:
-			#print("return to original")
+			#print("RETURN")
 			%SightCone.set_color(LIGHT_CYAN)
 			%WizardAnim.walk_anim()
 			return_to_original(delta)
@@ -112,6 +121,32 @@ func _physics_process(delta):
 					return
 			if %AlertBox.get_overlapping_areas():
 				state = State.INVESTIGATE
+
+
+func attack_player(delta) -> void:
+	velocity = Vector2.ZERO
+	var direction = global_position.direction_to(player.global_position)
+	direction = direction.normalized()
+	
+	var angle_to = transform.x.angle_to(direction)
+	rotate(sign(angle_to) * min(delta * rotation_speed, abs(angle_to)))
+	if ammo_loaded:
+		%WizardAnim.attack_anim()
+		ammo_loaded = false
+		shoot()
+		%AttackTimer.start()
+
+
+func shoot() -> void:
+	const ORB = preload("res://enemy/wizard/wizard_orb.tscn")
+	var new_orb = ORB.instantiate()
+	new_orb.global_position = global_position
+	new_orb.target_destination = player.global_position
+	get_tree().root.add_child(new_orb)
+	#print("Wizard position: ", global_position)
+	#print("Player position: ", player.global_position)
+	#print("Orb starting position: ", new_orb.global_position)
+	#print("Orb destination: ", new_orb.target_destination)
 
 
 func _on_rotate_timer_timeout():
@@ -129,3 +164,7 @@ func _on_seek_timer_timeout():
 		4:
 			rotation_state = 1
 			state = State.RETURN
+
+
+func _on_attack_timer_timeout():
+	ammo_loaded = true

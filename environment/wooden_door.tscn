@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c887y2alp83kp"]
+[gd_scene load_steps=8 format=3 uid="uid://c887y2alp83kp"]
 
 [ext_resource type="Script" path="res://environment/wooden_door.gd" id="1_b2db3"]
 [ext_resource type="Texture2D" uid="uid://dgxforkedfd2f" path="res://environment/wooden_door.png" id="1_e3gap"]
@@ -14,15 +14,18 @@ bg_color = Color(0.920172, 0.516911, 0.56987, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fdbx"]
 size = Vector2(32, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_repy6"]
+size = Vector2(32, 12)
+
 [node name="WoodenDoor" type="StaticBody2D"]
 script = ExtResource("1_b2db3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_tbjua")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_e3gap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tbjua")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
@@ -50,5 +53,13 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnlockBox"]
 shape = SubResource("RectangleShape2D_5fdbx")
 debug_color = Color(0.522097, 0.561561, 0.34047, 0.42)
+
+[node name="PassThroughBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassThroughBox"]
+shape = SubResource("RectangleShape2D_repy6")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
