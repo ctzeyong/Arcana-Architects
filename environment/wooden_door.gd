@@ -7,7 +7,6 @@ func _ready():
 	%ProgressBar.visible = false
 	time = %Timer.get_wait_time()
 	%Timer.stop()
-	gloves = Global.gloves_equipped
 
 func _physics_process(delta):
 	if %Timer.is_stopped():
@@ -17,7 +16,7 @@ func _physics_process(delta):
 	
 	if %UnlockBox.get_overlapping_bodies():
 		%ProgressBar.visible = true
-		if Input.is_action_pressed("use_item") and Global.gloves_unlock_left and gloves:
+		if Input.is_action_pressed("use_item") and Global.gloves_unlock_left and Global.gloves_equipped:
 			queue_free()
 			Global.gloves_unlock_left -= 1
 		if Input.is_action_pressed("unlock"):

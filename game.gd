@@ -7,6 +7,7 @@ func _run_once():
 	set_patrol_state()
 	%LevelPassed.visible = false
 	%LevelFailed.visible = false
+	Global.gloves_equipped = false
 
 func set_patrol_state():
 	%Guard.set_rotate_patrol(80)
