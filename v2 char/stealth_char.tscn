@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm5r1wi0y1u3d"]
+[gd_scene load_steps=8 format=3 uid="uid://cm5r1wi0y1u3d"]
 
 [ext_resource type="Script" path="res://v2 char/stealth_char.gd" id="1_e1eod"]
 [ext_resource type="PackedScene" uid="uid://7an6jat1iy21" path="res://v2 char/stealth_char_anim.tscn" id="2_6kwbc"]
@@ -9,7 +9,12 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_w4yjt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kef13"]
-radius = 25.0
+radius = 22.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gagcx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb6tn"]
+bg_color = Color(0.252798, 0.704672, 0.351855, 1)
 
 [node name="StealthChar" type="CharacterBody2D"]
 collision_layer = 182
@@ -51,4 +56,32 @@ unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 
+[node name="HPTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -14.0
+offset_top = -16.0
+offset_right = 14.0
+offset_bottom = -12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gagcx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wb6tn")
+step = 0.001
+show_percentage = false
+
+[node name="ItemCharge" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -42.0
+offset_right = 20.0
+offset_bottom = -19.0
+horizontal_alignment = 1
+
 [connection signal="timeout" from="ItemTimer" to="." method="_on_item_timer_timeout"]
+[connection signal="timeout" from="HPTimer" to="." method="_on_hp_timer_timeout"]
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]

@@ -3,6 +3,22 @@
 [ext_resource type="Script" path="res://WizardAnim.gd" id="1_dxsp8"]
 [ext_resource type="Texture2D" uid="uid://bje3ymbseul4i" path="res://enemy/wizard/wizardspritesheet.png" id="2_nk0fi"]
 
+[sub_resource type="Animation" id="Animation_4vmep"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 5, 2, 6, 2]
+}
+
 [sub_resource type="Animation" id="Animation_oy2pd"]
 resource_name = "walk"
 length = 1.2
@@ -19,22 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [2, 1, 0, 1, 2, 3, 4, 3]
-}
-
-[sub_resource type="Animation" id="Animation_4vmep"]
-resource_name = "attack"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [2, 5, 2, 6, 2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_axa6n"]

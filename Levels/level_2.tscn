@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://daqy4t6d8uv0t"]
+[gd_scene load_steps=26 format=3 uid="uid://daqy4t6d8uv0t"]
 
 [ext_resource type="PackedScene" uid="uid://cm5r1wi0y1u3d" path="res://v2 char/stealth_char.tscn" id="1_8swxy"]
 [ext_resource type="Texture2D" uid="uid://cuvljtwehoxkq" path="res://Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="1_bu83p"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c887y2alp83kp" path="res://environment/wooden_door.tscn" id="4_yiiia"]
 [ext_resource type="PackedScene" uid="uid://dt2og71is61y1" path="res://portal/blue_portal_anim.tscn" id="5_3831u"]
 [ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://portal/purple_portal.tscn" id="6_nnv8b"]
+[ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://purple_pearl.tscn" id="7_lipqt"]
 [ext_resource type="PackedScene" uid="uid://u50hqpiog58w" path="res://enemy/wizard/wizard.tscn" id="7_nywu3"]
 [ext_resource type="PackedScene" uid="uid://cylbj5hu8vn71" path="res://pickups/codex/codex.tscn" id="9_33wqo"]
 [ext_resource type="Script" path="res://LevelPassed.gd" id="10_p8l5o"]
@@ -1336,6 +1337,42 @@ text = "Quit To Menu"
 [node name="PauseNode" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("15_4d43y")
+
+[node name="PurplePearl7" parent="." instance=ExtResource("7_lipqt")]
+position = Vector2(472, 457)
+
+[node name="PurplePearl6" parent="." instance=ExtResource("7_lipqt")]
+position = Vector2(476, 74)
+
+[node name="PurplePearl5" parent="." instance=ExtResource("7_lipqt")]
+position = Vector2(175, 22)
+
+[node name="PurplePearl" parent="." instance=ExtResource("7_lipqt")]
+position = Vector2(186, 455)
+
+[node name="PurplePearl2" parent="." instance=ExtResource("7_lipqt")]
+position = Vector2(282, 331)
+
+[node name="PurplePearl3" parent="." instance=ExtResource("7_lipqt")]
+position = Vector2(385, 344)
+
+[node name="PurplePearl4" parent="." instance=ExtResource("7_lipqt")]
+position = Vector2(73, 228)
+
+[node name="Door" type="Label" parent="."]
+offset_left = -14.0
+offset_top = 497.0
+offset_right = 173.0
+offset_bottom = 520.0
+text = "Press 'E' to unlock doors"
+
+[node name="Gloves" type="Label" parent="."]
+offset_left = 166.0
+offset_top = 234.0
+offset_right = 561.0
+offset_bottom = 283.0
+text = "Press 'Q' to unlock doors instantly using the gloves.
+But beware, there are only 3 charges!"
 
 [connection signal="timeout" from="RunOnceTimer" to="." method="_on_run_once_timer_timeout"]
 [connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]
