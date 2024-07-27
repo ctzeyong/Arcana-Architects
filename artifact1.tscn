@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://igact3phjh8t"]
+
+[ext_resource type="Texture2D" uid="uid://qyto60nr6jve" path="res://background/background.jpg" id="1_uac25"]
+[ext_resource type="Script" path="res://artifact1.gd" id="1_yomkr"]
+[ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://background elements/button default.tres" id="2_neuc0"]
+[ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://background elements/HelvetiPixel.ttf" id="3_cj755"]
+[ext_resource type="Texture2D" uid="uid://6t7eyux0ft7r" path="res://pickups/gloves/glove.png" id="4_yaasb"]
+
+[node name="Artifact1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yomkr")
+
+[node name="Description" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Description"]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_uac25")
+
+[node name="ColorRect" type="ColorRect" parent="Description"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -551.0
+offset_top = -299.0
+offset_right = 551.0
+offset_bottom = 299.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Description"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 406.0
+offset_top = 217.0
+offset_right = 535.0
+offset_bottom = 283.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NextLevelButton" type="Button" parent="Description/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_neuc0")
+theme_override_fonts/font = ExtResource("3_cj755")
+theme_override_font_sizes/font_size = 35
+text = "Next Level"
+
+[node name="MainMenuButton" type="Button" parent="Description/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_neuc0")
+theme_override_fonts/font = ExtResource("3_cj755")
+theme_override_font_sizes/font_size = 35
+text = "Main Menu"
+
+[node name="TextureRect2" type="TextureRect" parent="Description"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 39.0
+offset_right = 45.0
+offset_bottom = 139.0
+grow_horizontal = 2
+texture = ExtResource("4_yaasb")
+
+[node name="TextEdit" type="TextEdit" parent="Description"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -185.0
+offset_right = 452.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/background_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_cj755")
+theme_override_font_sizes/font_size = 30
+text = "          CONGRATULATIONS! You have obtained The Shadow Weaver's Gloves!
+
+Centuries ago, in the heart of the mystical city of Valoria, there lived a master thief known only as \"The Shadow Weaver.\" This enigmatic figure was said to be able to meld into shadows, passing unseen through the most heavily guarded fortresses. Legends say the source of the Shadow Weaver's power lay in a pair of magical gloves, which he crafted with the help of a powerful sorcerer.
+
+The gloves were imbued with the essence of the Shadow Realm, a parallel dimension where darkness reigns supreme. The Shadow Weaver used the gauntlets to pull off impossible heists, stealing priceless artifacts and vanishing without a trace. After his final, greatest heist—the theft of the King's Crown—the Shadow Weaver disappeared, and the gloves were lost to time.
+
+Pro Tip: Upon obtaining these gloves, you can press \"Q\" to instantly unlock a door, up to _ uses!"
+wrap_mode = 1
+scroll_smooth = true
+
+[connection signal="pressed" from="Description/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="Description/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

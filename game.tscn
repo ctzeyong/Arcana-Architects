@@ -1066,7 +1066,9 @@ position = Vector2(572, 294)
 
 [node name="LevelPassed" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 layer = 100
+visible = false
 script = ExtResource("7_2j3c8")
 
 [node name="ColorRect" type="ColorRect" parent="LevelPassed"]
@@ -1092,12 +1094,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -122.0
-offset_top = 11.0
-offset_right = 118.0
-offset_bottom = 151.0
+offset_left = -104.0
+offset_top = 12.0
+offset_right = 136.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ContinueButton" type="Button" parent="LevelPassed/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_4t152")
+theme_override_fonts/font = ExtResource("14_kemal")
+theme_override_font_sizes/font_size = 50
+text = "Continue"
 
 [node name="RestartButton" type="Button" parent="LevelPassed/VBoxContainer"]
 layout_mode = 2
@@ -1105,13 +1114,6 @@ theme = ExtResource("8_4t152")
 theme_override_fonts/font = ExtResource("14_kemal")
 theme_override_font_sizes/font_size = 50
 text = "Restart"
-
-[node name="NextLevelButton" type="Button" parent="LevelPassed/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("8_4t152")
-theme_override_fonts/font = ExtResource("14_kemal")
-theme_override_font_sizes/font_size = 50
-text = "Next Level"
 
 [node name="MenuButton" type="Button" parent="LevelPassed/VBoxContainer"]
 layout_mode = 2
@@ -1343,8 +1345,8 @@ points = PackedVector2Array(64, 0)
 [connection signal="pearl_picked_up" from="PurplePearl" to="." method="_on_purple_pearl_pearl_picked_up"]
 [connection signal="health_depleted" from="StealthChar" to="." method="_on_stealth_char_health_depleted"]
 [connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]
+[connection signal="pressed" from="LevelPassed/VBoxContainer/ContinueButton" to="LevelPassed" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="LevelPassed/VBoxContainer/RestartButton" to="LevelPassed" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="LevelPassed/VBoxContainer/NextLevelButton" to="LevelPassed" method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="LevelPassed/VBoxContainer/MenuButton" to="LevelPassed" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="LevelFailed/VBoxContainer/RestartButton" to="LevelFailed" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="LevelFailed/VBoxContainer/MenuButton" to="LevelFailed" method="_on_menu_button_pressed"]
