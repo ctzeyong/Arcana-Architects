@@ -2,6 +2,7 @@ extends Node2D
 
 
 func _ready():
+	%AnimationPlayer.stop()
 	%AnimationPlayer.play("idle")
 
 

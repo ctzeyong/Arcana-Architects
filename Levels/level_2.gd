@@ -5,6 +5,7 @@ var final_artefact_collected = false
 
 func _run_once():
 	set_patrol_state()
+	Global.gloves_equipped = true
 	#%LevelPassed.visible = false
 	#%LevelFailed.visible = false
 

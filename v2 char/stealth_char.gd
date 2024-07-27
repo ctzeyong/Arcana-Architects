@@ -80,7 +80,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	$ItemCharge.text = str(Global.gloves_unlock_left)
-	if Input.is_action_just_pressed("use_item"):
+	if Input.is_action_just_pressed("use_item") and Global.gloves_equipped:
 		$ItemCharge.visible = true
 		$ChargeTimer.start()
 	

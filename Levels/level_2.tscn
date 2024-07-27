@@ -1367,12 +1367,19 @@ offset_bottom = 520.0
 text = "Press 'E' to unlock doors"
 
 [node name="Gloves" type="Label" parent="."]
-offset_left = 166.0
-offset_top = 234.0
-offset_right = 561.0
-offset_bottom = 283.0
+offset_left = 7.0
+offset_top = 303.0
+offset_right = 402.0
+offset_bottom = 352.0
 text = "Press 'Q' to unlock doors instantly using the gloves.
 But beware, there are only 3 charges!"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 171.0
+offset_top = 259.0
+offset_right = 493.0
+offset_bottom = 282.0
+text = "Wizards shoot magic orbs to damage you!"
 
 [connection signal="timeout" from="RunOnceTimer" to="." method="_on_run_once_timer_timeout"]
 [connection signal="level_passed" from="PurplePortal" to="." method="_on_purple_portal_level_passed"]
