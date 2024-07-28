@@ -96,19 +96,19 @@ func _physics_process(delta):
 
 
 func take_damage(dmg):
-	print("damage")
+	#print("damage")
 	health -= dmg
 	$HealthBar.value = health
 	$HealthBar.visible = true
 	$HPTimer.start()
 	if health <= 0:
-		print("death")
+		#print("death")
 		health_depleted.emit()
 
 
 func _on_item_timer_timeout():
 	item_has_charge = false
-	print("no charge")
+	#print("no charge")
 
 
 func _on_hp_timer_timeout():
