@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://igact3phjh8t"]
 
 [ext_resource type="Texture2D" uid="uid://qyto60nr6jve" path="res://background/background.jpg" id="1_uac25"]
-[ext_resource type="Script" path="res://artifact1.gd" id="1_yomkr"]
+[ext_resource type="Script" path="res://artifacts/artifact1.gd" id="1_yomkr"]
 [ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://background elements/button default.tres" id="2_neuc0"]
 [ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://background elements/HelvetiPixel.ttf" id="3_cj755"]
 [ext_resource type="Texture2D" uid="uid://6t7eyux0ft7r" path="res://pickups/gloves/glove.png" id="4_yaasb"]
@@ -88,14 +88,14 @@ grow_vertical = 2
 theme_override_colors/background_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_cj755")
-theme_override_font_sizes/font_size = 30
-text = "          CONGRATULATIONS! You have obtained The Shadow Weaver's Gloves!
+theme_override_font_sizes/font_size = 35
+text = "   CONGRATULATIONS! You have obtained The Shadow Weaver's Gloves!
 
 Centuries ago, in the heart of the mystical city of Valoria, there lived a master thief known only as \"The Shadow Weaver.\" This enigmatic figure was said to be able to meld into shadows, passing unseen through the most heavily guarded fortresses. Legends say the source of the Shadow Weaver's power lay in a pair of magical gloves, which he crafted with the help of a powerful sorcerer.
 
 The gloves were imbued with the essence of the Shadow Realm, a parallel dimension where darkness reigns supreme. The Shadow Weaver used the gauntlets to pull off impossible heists, stealing priceless artifacts and vanishing without a trace. After his final, greatest heist—the theft of the King's Crown—the Shadow Weaver disappeared, and the gloves were lost to time.
 
-Pro Tip: Upon obtaining these gloves, you can press \"Q\" to instantly unlock a door, up to _ uses!"
+Pro Tip: Upon obtaining these gloves, you can press \"Q\" to instantly unlock a door, with limited uses!"
 wrap_mode = 1
 scroll_smooth = true
 

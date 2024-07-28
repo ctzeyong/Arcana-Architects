@@ -1,0 +1,156 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtdx1ep85e81v"]
+
+[ext_resource type="Script" path="res://artifacts/artifact2.gd" id="1_bvfbt"]
+[ext_resource type="Texture2D" uid="uid://qyto60nr6jve" path="res://background/background.jpg" id="2_ddjs5"]
+[ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://background elements/button default.tres" id="3_vffyb"]
+[ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://background elements/HelvetiPixel.ttf" id="4_g3s8h"]
+[ext_resource type="Texture2D" uid="uid://pjqrg6ip50l" path="res://pickups/codex/codex.png" id="5_osr3q"]
+
+[node name="Artifact2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvfbt")
+
+[node name="Description" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Description"]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_ddjs5")
+
+[node name="ColorRect" type="ColorRect" parent="Description"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -551.0
+offset_top = -299.0
+offset_right = 551.0
+offset_bottom = 299.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Description"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 406.0
+offset_top = 217.0
+offset_right = 535.0
+offset_bottom = 283.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NextLevelButton" type="Button" parent="Description/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vffyb")
+theme_override_fonts/font = ExtResource("4_g3s8h")
+theme_override_font_sizes/font_size = 35
+text = "Next Level"
+
+[node name="MainMenuButton" type="Button" parent="Description/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_vffyb")
+theme_override_fonts/font = ExtResource("4_g3s8h")
+theme_override_font_sizes/font_size = 35
+text = "Main Menu"
+
+[node name="TextureRect2" type="TextureRect" parent="Description"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 39.0
+offset_right = 45.0
+offset_bottom = 139.0
+grow_horizontal = 2
+texture = ExtResource("5_osr3q")
+
+[node name="TextEdit" type="TextEdit" parent="Description"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -449.0
+offset_top = -185.0
+offset_right = 451.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/background_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_g3s8h")
+theme_override_font_sizes/font_size = 35
+text = "        CONGRATULATIONS! You have obtained The Arcane Codex!
+
+The Arcane Codex was created millennia ago by the legendary archmage Aeloria, who sought to compile the most powerful and forbidden spells into a single tome. Aeloria traveled across realms, consulting with celestial beings, demons, and nature spirits to gather knowledge. The creation of the Codex was said to have taken a century, during which Aeloria poured her life force into the book, making it a sentient artifact.
+
+After Aeloria's mysterious disappearance, the Codex was lost to time. It resurfaced throughout history, often in the possession of those who sought ultimate magical power. However, its dark allure led many to ruin, as the Codex demands a great price from those who attempt to wield its power without understanding its true nature."
+wrap_mode = 1
+scroll_smooth = true
+
+[node name="ToBeContinued" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="ToBeContinued"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -6000.0
+offset_right = 600.0
+offset_bottom = 6000.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.796078)
+
+[node name="Label" type="Label" parent="ToBeContinued/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -11.5
+offset_right = 49.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_g3s8h")
+theme_override_font_sizes/font_size = 125
+text = "To Be Continued...
+"
+
+[node name="QuitButton" type="Button" parent="ToBeContinued/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = 86.0
+offset_right = 72.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_vffyb")
+theme_override_fonts/font = ExtResource("4_g3s8h")
+theme_override_font_sizes/font_size = 100
+text = "Quit"
+
+[connection signal="pressed" from="Description/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="Description/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="ToBeContinued/ColorRect/QuitButton" to="." method="_on_quit_button_pressed"]

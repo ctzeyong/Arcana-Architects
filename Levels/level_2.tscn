@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://purple_pearl.tscn" id="7_lipqt"]
 [ext_resource type="PackedScene" uid="uid://u50hqpiog58w" path="res://enemy/wizard/wizard.tscn" id="7_nywu3"]
 [ext_resource type="PackedScene" uid="uid://cylbj5hu8vn71" path="res://pickups/codex/codex.tscn" id="9_33wqo"]
-[ext_resource type="Script" path="res://LevelPassed.gd" id="10_p8l5o"]
+[ext_resource type="Script" path="res://Levels/LevelPassed2.gd" id="10_dchmm"]
 [ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://background elements/HelvetiPixel.ttf" id="11_1ys1p"]
 [ext_resource type="Theme" uid="uid://bws17qh6wm351" path="res://background elements/button default.tres" id="12_8e1e3"]
 [ext_resource type="Script" path="res://LevelFailed.gd" id="13_3tcyf"]
@@ -1148,7 +1148,7 @@ unique_name_in_owner = true
 process_mode = 3
 layer = 100
 visible = false
-script = ExtResource("10_p8l5o")
+script = ExtResource("10_dchmm")
 
 [node name="ColorRect" type="ColorRect" parent="LevelPassed"]
 offset_right = 40.0
@@ -1364,13 +1364,15 @@ offset_left = -14.0
 offset_top = 497.0
 offset_right = 173.0
 offset_bottom = 520.0
+theme_override_fonts/font = ExtResource("11_1ys1p")
 text = "Press 'E' to unlock doors"
 
 [node name="Gloves" type="Label" parent="."]
 offset_left = 7.0
-offset_top = 303.0
+offset_top = 321.0
 offset_right = 402.0
 offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("11_1ys1p")
 text = "Press 'Q' to unlock doors instantly using the gloves.
 But beware, there are only 3 charges!"
 
@@ -1379,6 +1381,7 @@ offset_left = 171.0
 offset_top = 259.0
 offset_right = 493.0
 offset_bottom = 282.0
+theme_override_fonts/font = ExtResource("11_1ys1p")
 text = "Wizards shoot magic orbs to damage you!"
 
 [connection signal="timeout" from="RunOnceTimer" to="." method="_on_run_once_timer_timeout"]
