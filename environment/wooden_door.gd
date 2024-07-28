@@ -26,10 +26,6 @@ func _physics_process(delta):
 		%Timer.stop()
 		%ProgressBar.visible = false
 	
-	if %PassThroughBox.get_overlapping_bodies():
-		set_collision_layer_value(1, false)
-	else:
-		set_collision_layer_value(1, true)
 
 
 func _on_timer_timeout():
