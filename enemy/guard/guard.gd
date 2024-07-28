@@ -43,9 +43,9 @@ func _physics_process(delta):
 				if detect_player(delta):
 					state = State.CHASE
 					return
-			if %AlertBox.get_overlapping_areas():
-				state = State.INVESTIGATE
-				return
+			#if %AlertBox.get_overlapping_areas():
+				#state = State.INVESTIGATE
+				#return
 			match p_state:
 				P_State.STATIC:
 					pass
@@ -60,9 +60,9 @@ func _physics_process(delta):
 				state = State.CHASE
 				player_pos = null
 				return
-			if %AlertBox.get_overlapping_areas():
-				player_pos = player.global_position
-				%NavigationAgent2D.target_position = player_pos
+			#if %AlertBox.get_overlapping_areas():
+				#player_pos = player.global_position
+				#%NavigationAgent2D.target_position = player_pos
 		State.SEEK:
 			#print("player seeking")
 			%SightCone.set_color(GOLD)
@@ -72,11 +72,11 @@ func _physics_process(delta):
 				state = State.CHASE
 				%SeekTimer.stop()
 				return
-			if %AlertBox.get_overlapping_areas():
-				state = State.INVESTIGATE
-				%SeekTimer.stop()
+			#if %AlertBox.get_overlapping_areas():
+				#state = State.INVESTIGATE
+				#%SeekTimer.stop()
 		State.CHASE:
-			print("player detected")
+			#print("player detected")
 			%SightCone.set_color(LIGHT_CORAL)
 			%GuardAnim.sprint_right_anim()
 			chase_player(delta)
@@ -84,7 +84,7 @@ func _physics_process(delta):
 				state = State.LOST_SIGHT
 				#%ChaseTimer.start()
 		State.LOST_SIGHT:
-			print("player sight lost")
+			#print("player sight lost")
 			%SightCone.set_color(LIGHT_CORAL)
 			if lost_player(delta):
 				state = State.SEEK
@@ -95,9 +95,9 @@ func _physics_process(delta):
 				state = State.CHASE
 				#%ChaseTimer.stop()
 				return
-			if %AlertBox.get_overlapping_areas():
-				state = State.INVESTIGATE
-				return
+			#if %AlertBox.get_overlapping_areas():
+				#state = State.INVESTIGATE
+				#return
 		State.RETURN:
 			#print("return to original")
 			%SightCone.set_color(LIGHT_CYAN)
@@ -107,8 +107,8 @@ func _physics_process(delta):
 				if detect_player(delta):
 					state = State.CHASE
 					return
-			if %AlertBox.get_overlapping_areas():
-				state = State.INVESTIGATE
+			#if %AlertBox.get_overlapping_areas():
+				#state = State.INVESTIGATE
 
 
 func _on_seek_timer_timeout():

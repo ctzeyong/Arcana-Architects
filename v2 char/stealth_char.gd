@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const BASE_SPEED := 5000
-const SPRINT_MULTIPLIER := 2.0
-const ALERTBOX_RADIUS := 10.0
+const BASE_SPEED := 4000
+const SPRINT_MULTIPLIER := 2.5
+const ALERTBOX_RADIUS := 13.0
 const ALERTBOX_MULTIPLER := 4.0
 var last_direction := 0 
 # to decide idle animation, 0 1 2 3 correspond to up down left right 
@@ -117,3 +117,8 @@ func _on_hp_timer_timeout():
 
 func _on_charge_timer_timeout():
 	$ItemCharge.visible = false
+
+
+func _on_alert_box_body_entered(body):
+	if body.has_method("player_is_near"):
+		body.player_is_near()

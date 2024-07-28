@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm5r1wi0y1u3d"]
+[gd_scene load_steps=9 format=3 uid="uid://cm5r1wi0y1u3d"]
 
 [ext_resource type="Script" path="res://v2 char/stealth_char.gd" id="1_e1eod"]
 [ext_resource type="PackedScene" uid="uid://7an6jat1iy21" path="res://v2 char/stealth_char_anim.tscn" id="2_6kwbc"]
+[ext_resource type="FontFile" uid="uid://bgst7yyeb2faa" path="res://background elements/HelvetiPixel.ttf" id="3_8vy3o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lorbp"]
 radius = 7.0
@@ -35,8 +36,8 @@ shape = SubResource("CircleShape2D_lorbp")
 
 [node name="AlertBox" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 8
-collision_mask = 0
+collision_layer = 16
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AlertBox"]
 shape = SubResource("CircleShape2D_w4yjt")
@@ -75,13 +76,14 @@ step = 0.001
 show_percentage = false
 
 [node name="ItemCharge" type="Label" parent="."]
-visible = false
 offset_left = -20.0
-offset_top = -42.0
+offset_top = -31.0
 offset_right = 20.0
-offset_bottom = -19.0
+offset_bottom = -8.0
+theme_override_fonts/font = ExtResource("3_8vy3o")
 horizontal_alignment = 1
 
+[connection signal="body_entered" from="AlertBox" to="." method="_on_alert_box_body_entered"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_item_timer_timeout"]
 [connection signal="timeout" from="HPTimer" to="." method="_on_hp_timer_timeout"]
 [connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]

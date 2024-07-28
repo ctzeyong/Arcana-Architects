@@ -47,9 +47,9 @@ func _physics_process(delta):
 				if detect_player(delta):
 					state = State.CHASE
 					return
-			if %AlertBox.get_overlapping_areas():
-				state = State.INVESTIGATE
-				return
+			#if %AlertBox.get_overlapping_areas():
+				#state = State.INVESTIGATE
+				#return
 			match p_state:
 				P_State.STATIC:
 					return
@@ -64,9 +64,9 @@ func _physics_process(delta):
 				state = State.CHASE
 				player_pos = null
 				return
-			if %AlertBox.get_overlapping_areas():
-				player_pos = player.global_position
-				%NavigationAgent2D.target_position = player_pos
+			#if %AlertBox.get_overlapping_areas():
+				#player_pos = player.global_position
+				#%NavigationAgent2D.target_position = player_pos
 		State.SEEK:
 			#print("SEEK")
 			%SightCone.set_color(GOLD)
@@ -76,9 +76,9 @@ func _physics_process(delta):
 				state = State.CHASE
 				%SeekTimer.stop()
 				return
-			if %AlertBox.get_overlapping_areas():
-				state = State.INVESTIGATE
-				%SeekTimer.stop()
+			#if %AlertBox.get_overlapping_areas():
+				#state = State.INVESTIGATE
+				#%SeekTimer.stop()
 		State.CHASE:
 			#print("CHASE")
 			%SightCone.set_color(LIGHT_CORAL)
@@ -100,9 +100,9 @@ func _physics_process(delta):
 			if detect_player(delta):
 				state = State.CHASE
 				return
-			if %AlertBox.get_overlapping_areas():
-				state = State.INVESTIGATE
-				return
+			#if %AlertBox.get_overlapping_areas():
+				#state = State.INVESTIGATE
+				#return
 		State.ATTACK:
 			#print("ATTACK")
 			attack_player(delta)
@@ -119,8 +119,8 @@ func _physics_process(delta):
 				if detect_player(delta):
 					state = State.CHASE
 					return
-			if %AlertBox.get_overlapping_areas():
-				state = State.INVESTIGATE
+			#if %AlertBox.get_overlapping_areas():
+				#state = State.INVESTIGATE
 
 
 func attack_player(delta) -> void:

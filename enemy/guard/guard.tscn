@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwta5hpjw753i"]
+[gd_scene load_steps=6 format=3 uid="uid://cwta5hpjw753i"]
 
 [ext_resource type="Script" path="res://enemy/guard/guard.gd" id="1_2qko4"]
 [ext_resource type="PackedScene" uid="uid://bktsqmld6r600" path="res://enemy/guard/guard_anim.tscn" id="1_24ljv"]
@@ -9,14 +9,11 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_284q3"]
 radius = 120.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j0onp"]
-radius = 11.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_xt0yo"]
 radius = 9.0
 
 [node name="Guard" type="CharacterBody2D"]
-collision_layer = 208
+collision_layer = 17
 collision_mask = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -36,15 +33,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox"]
 shape = SubResource("CircleShape2D_284q3")
-
-[node name="AlertBox" type="Area2D" parent="."]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AlertBox"]
-shape = SubResource("CircleShape2D_j0onp")
-debug_color = Color(0.584625, 0.482082, 0.706517, 0.42)
 
 [node name="AttackBox" type="Area2D" parent="."]
 unique_name_in_owner = true
