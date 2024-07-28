@@ -13,7 +13,7 @@ func _run_once():
 func set_patrol_state():
 	%Guard.set_rotate_patrol(45)
 	%Guard2.set_rotate_patrol(75)
-	%Guard3.set_rotate_patrol(65)
+	%Guard3.set_rotate_patrol(70)
 	$Wizard.set_rotate_patrol(45)
 	$Wizard2.set_rotate_patrol(75)
 

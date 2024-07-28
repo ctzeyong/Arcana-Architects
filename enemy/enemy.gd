@@ -151,6 +151,15 @@ func investigate_player(delta) -> void:
 	velocity = direction * walk_speed * delta
 
 
+func player_is_near() -> void:
+	if state == State.INVESTIGATE:
+		player_pos = player.global_position
+		%NavigationAgent2D.target_position = player_pos
+	else:
+		state = State.INVESTIGATE
+		%SeekTimer.stop()
+
+
 func seek_player(delta) -> void:
 	var rot_reached
 	match rotation_state:
