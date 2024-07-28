@@ -19,14 +19,14 @@ func set_patrol_state():
 
 func _on_purple_portal_level_passed():
 	if final_artefact_collected:
-		print("passed")
+		#print("passed")
 		%LevelPassed.visible = true
 		get_tree().paused = true
 
 
 func _on_purple_pearl_pearl_picked_up():
 	pearls_collected += 1
-	print("pearl")
+	#print("pearl")
 
 
 func _on_stealth_char_health_depleted():
