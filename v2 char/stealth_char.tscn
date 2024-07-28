@@ -18,7 +18,7 @@ bg_color = Color(0.252798, 0.704672, 0.351855, 1)
 
 [node name="StealthChar" type="CharacterBody2D"]
 collision_layer = 182
-collision_mask = 17
+collision_mask = 19
 script = ExtResource("1_e1eod")
 
 [node name="Camera2D" type="Camera2D" parent="."]
