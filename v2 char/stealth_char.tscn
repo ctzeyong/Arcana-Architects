@@ -32,10 +32,12 @@ position = Vector2(9.53674e-07, 0)
 scale = Vector2(2.5, 2.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_lorbp")
 
 [node name="AlertBox" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 16
 collision_mask = 16
 
@@ -45,6 +47,7 @@ debug_color = Color(0.588235, 0.462745, 0.772549, 0.321569)
 
 [node name="VisualBox" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 3
 collision_mask = 3
 

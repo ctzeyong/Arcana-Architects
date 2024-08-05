@@ -15,6 +15,7 @@ script = ExtResource("1_rcyux")
 position = Vector2(0, 15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 15)
 shape = SubResource("CircleShape2D_uaqq4")
 

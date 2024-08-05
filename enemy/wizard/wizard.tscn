@@ -10,7 +10,7 @@ radius = 8.0
 radius = 120.0
 
 [node name="Wizard" type="CharacterBody2D"]
-collision_layer = 17
+collision_layer = 16
 collision_mask = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -21,10 +21,12 @@ unique_name_in_owner = true
 scale = Vector2(2.5, 2.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_lylpc")
 
 [node name="DetectBox" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 0
 collision_mask = 4
 
