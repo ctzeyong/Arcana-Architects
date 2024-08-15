@@ -6,6 +6,7 @@ const SPEED = 300
 const RANGE = 1000
 
 func _physics_process(delta):
+	# manage movement of orb
 	var direction = target_destination - global_position
 	direction = direction.normalized()
 	position += direction * SPEED * delta
@@ -20,6 +21,6 @@ func _on_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage(40)
 
-
+# disappears after 2s
 func _on_timer_timeout():
 	queue_free()

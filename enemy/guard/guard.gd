@@ -1,12 +1,12 @@
 extends Enemy
 
 func _ready():
-	player = Global.player
+	player = Global.player # maps the player node in global script
 	if player == null:
 		push_error("Player node not found")
 	#else:
 		#print("Player found")
-	visual_box = Global.visual_box
+	visual_box = Global.visual_box # get character's visual box
 	
 	original_position = global_position
 	original_rotation = rotation
@@ -39,7 +39,6 @@ func _physics_process(delta):
 			%SightCone.set_color(LIGHT_CYAN)
 			%GuardAnim.idle_right_anim()
 			if %DetectBox.get_overlapping_bodies():
-				#print("player in area")
 				if detect_player(delta):
 					state = State.CHASE
 					return
@@ -49,7 +48,6 @@ func _physics_process(delta):
 				P_State.ROTATE:
 					rotate_patrol(delta)
 		State.INVESTIGATE:
-			#print("investigate")
 			%SightCone.set_color(GOLD)
 			%GuardAnim.walk_right_anim()
 			investigate_player(delta)
@@ -57,7 +55,6 @@ func _physics_process(delta):
 				state = State.CHASE
 				player_pos = null
 		State.SEEK:
-			#print("player seeking")
 			%SightCone.set_color(GOLD)
 			%GuardAnim.idle_right_anim()
 			seek_player(delta)
@@ -65,14 +62,12 @@ func _physics_process(delta):
 				state = State.CHASE
 				%SeekTimer.stop()
 		State.CHASE:
-			#print("player detected")
 			%SightCone.set_color(LIGHT_CORAL)
 			%GuardAnim.sprint_right_anim()
 			chase_player(delta)
 			if !detect_player(delta):
 				state = State.LOST_SIGHT
 		State.LOST_SIGHT:
-			#print("player sight lost")
 			%SightCone.set_color(LIGHT_CORAL)
 			if lost_player(delta):
 				state = State.SEEK
@@ -90,6 +85,7 @@ func _physics_process(delta):
 					state = State.CHASE
 
 
+# in tandem with seek_player
 func _on_seek_timer_timeout():
 	match rotation_state:
 		2:
@@ -98,7 +94,7 @@ func _on_seek_timer_timeout():
 			rotation_state = 1
 			state = State.RETURN
 
-
+# in tandem with rotate_patrol
 func _on_rotate_timer_timeout():
 	match rotation_state:
 		2:
@@ -106,7 +102,7 @@ func _on_rotate_timer_timeout():
 		4:
 			rotation_state = 1
 
-
+# if character enters the attack box
 func _on_attack_box_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage(1000)
