@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://be1se5nji30gi"]
 
-[ext_resource type="Script" path="res://WizardAnim.gd" id="1_dxsp8"]
+[ext_resource type="Script" path="res://enemy/wizard/WizardAnim.gd" id="1_s51ft"]
 [ext_resource type="Texture2D" uid="uid://bje3ymbseul4i" path="res://enemy/wizard/wizardspritesheet.png" id="2_nk0fi"]
 
 [sub_resource type="Animation" id="Animation_4vmep"]
@@ -44,7 +44,7 @@ _data = {
 }
 
 [node name="WizardAnim" type="Node2D"]
-script = ExtResource("1_dxsp8")
+script = ExtResource("1_s51ft")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

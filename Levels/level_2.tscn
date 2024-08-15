@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c887y2alp83kp" path="res://environment/wooden_door.tscn" id="4_yiiia"]
 [ext_resource type="PackedScene" uid="uid://dt2og71is61y1" path="res://portal/blue_portal_anim.tscn" id="5_3831u"]
 [ext_resource type="PackedScene" uid="uid://dlnp1c2eywyl0" path="res://portal/purple_portal.tscn" id="6_nnv8b"]
-[ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://purple_pearl.tscn" id="7_lipqt"]
+[ext_resource type="PackedScene" uid="uid://bgasyk1i58t5m" path="res://pickups/purple pearl/purple_pearl.tscn" id="7_lipqt"]
 [ext_resource type="PackedScene" uid="uid://u50hqpiog58w" path="res://enemy/wizard/wizard.tscn" id="7_nywu3"]
 [ext_resource type="PackedScene" uid="uid://cylbj5hu8vn71" path="res://pickups/codex/codex.tscn" id="9_33wqo"]
 [ext_resource type="Script" path="res://Levels/LevelPassed2.gd" id="10_dchmm"]

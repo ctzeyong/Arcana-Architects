@@ -1,4 +1,4 @@
-class_name Enemy
+class_name Enemy # creates a class Enemy
 extends CharacterBody2D
 
 var original_position := global_position
@@ -8,21 +8,29 @@ var player = null
 var visual_box = null
 var last_rotation
 
+# cone of sight settings
 var angle_cone_of_vision : float = deg_to_rad(96.0)
 var max_view_distance : float = 150.0
 var angle_between_rays : float = deg_to_rad(3)
+
+# attack range for ranged enemies
 var attack_distance : float = 100.0
 
+# moving, turning settings
 var rotation_speed : float = 5.0
 var patrol_rotation_speed : float = 0.8
 var walking_rotation_speed : float = 4.0
 var chase_speed := 8000
 var walk_speed := 3500
+
+# tolerance range for movement
 var rot_tolerance : float = 1.0
 var pos_tolerance : float = 2.0
 
+# manage attack intervals
 var ammo_loaded : bool = true
 
+# colors for sight cone
 const LIGHT_CYAN := Color(0.878431, 1, 1, 0.15)
 const LIGHT_CORAL := Color(0.941176, 0.501961, 0.501961, 0.15)
 const GOLD := Color(1, 0.843137, 0, 0.15)
@@ -33,6 +41,7 @@ var state := State.PATROL
 enum P_State { STATIC, ROTATE, FOLLOW_PATH }
 var p_state := P_State.STATIC
 
+# default rotation settings
 var rotation_state : int = 1
 var patrol_rotation_angle : float = deg_to_rad(60.0)
 
@@ -41,17 +50,18 @@ var sight_raycasts = []
 var attack_raycasts = []
 var raycast_points: PackedVector2Array = []
 
-
-func set_rotate_patrol(angle) -> void: # called by game scene
+# called by game scene
+func set_rotate_patrol(angle) -> void:
 	p_state = P_State.ROTATE
 	rotation_state = 1
 	patrol_rotation_angle = deg_to_rad(angle)
 
-
-func generate_raycasts() -> void: # many raycasts as cone of sight
+# many raycasts as cone of sight
+func generate_raycasts() -> void:
 	var ray_count = (angle_cone_of_vision / angle_between_rays)
 	
-	for i in (ray_count + 1): # generate raycasts for normal sight of player
+	# generate raycasts for normal sight of player
+	for i in (ray_count + 1):
 		var ray := RayCast2D.new()
 		var angle = angle_between_rays * (i - ray_count / 2.0)
 		ray.target_position = Vector2.RIGHT.rotated(angle) * max_view_distance # starting position face right
@@ -62,10 +72,12 @@ func generate_raycasts() -> void: # many raycasts as cone of sight
 		ray.enabled = true
 		chase_raycasts.append(ray)
 	
-	for i in ((ray_count / 2) + 1): # generate raycasts to detect visual box of player
+	# generate raycasts to detect visual box of player
+	# for a more realistic chase around turns
+	for i in ((ray_count / 2) + 1):
 		var ray := RayCast2D.new()
 		var angle = (angle_between_rays * 2) * (i - ((ray_count / 2) / 2.0))
-		ray.target_position = Vector2.RIGHT.rotated(angle) * (max_view_distance)# starting position face right
+		ray.target_position = Vector2.RIGHT.rotated(angle) * (max_view_distance) # starting position face right
 		ray.set_collision_mask_value(1, true)
 		ray.set_collision_mask_value(2, true)
 		ray.set_collide_with_bodies(true)
@@ -75,6 +87,7 @@ func generate_raycasts() -> void: # many raycasts as cone of sight
 		sight_raycasts.append(ray)
 
 
+# raycasts to check if player is in attack range
 func generate_attack_raycasts() -> void:
 	var ray_count = (angle_cone_of_vision / angle_between_rays)
 	
@@ -89,7 +102,7 @@ func generate_attack_raycasts() -> void:
 		ray.enabled = true
 		attack_raycasts.append(ray)
 
-
+# draws the visible sight cone
 func draw_sight_cone() -> void:
 	#print("draw")
 	raycast_points.clear()
@@ -98,11 +111,11 @@ func draw_sight_cone() -> void:
 		if ray is RayCast2D:
 			if ray.is_colliding():
 				raycast_points.append(to_local(ray.get_collision_point()))
-			else:
+			else: # ray does not collide, then take the max range
 				raycast_points.append(ray.target_position)
 	%SightCone.set_polygon(raycast_points)
 
-
+# rotate, pause for 3s, repeat
 func rotate_patrol(delta) -> void:
 	var rot_reached
 	match rotation_state:
@@ -127,7 +140,7 @@ func rotate_patrol(delta) -> void:
 
 
 func investigate_player(delta) -> void:
-	if player_pos == null:
+	if player_pos == null: # gets the current character position
 		player_pos = player.global_position
 		%NavigationAgent2D.target_position = player_pos
 	var current_pos = global_position
@@ -141,6 +154,7 @@ func investigate_player(delta) -> void:
 		%SeekTimer.start()
 		return
 	
+	# movement to target position
 	var next_path_pos = %NavigationAgent2D.get_next_path_position()
 	var direction = global_position.direction_to(next_path_pos)
 	direction = direction.normalized()
@@ -159,7 +173,7 @@ func player_is_near() -> void:
 		state = State.INVESTIGATE
 		%SeekTimer.stop()
 
-
+# rotate to see if character is in the area
 func seek_player(delta) -> void:
 	var rot_reached
 	match rotation_state:
@@ -184,7 +198,7 @@ func seek_player(delta) -> void:
 				rotation_state = 4
 				%SeekTimer.start()
 
-
+# check if player is within cone of sight
 func detect_player(delta) -> bool:
 	for ray in chase_raycasts:
 		if ray is RayCast2D:
@@ -206,6 +220,8 @@ func chase_player(delta) -> void:
 	velocity = direction * chase_speed * delta
 
 
+# use other set of raycasts to detect for a bigger area around the character
+# enemy attempts to chase player around turns
 func lost_player(delta) -> bool:
 	for ray in sight_raycasts:
 		if ray is RayCast2D:
@@ -223,7 +239,7 @@ func lost_player(delta) -> bool:
 		return true
 	return false
 
-
+# only for ranged enemies, check if player is in attack range
 func player_in_attack_range(delta) -> bool:
 	for ray in attack_raycasts:
 		if ray is RayCast2D:
@@ -233,7 +249,7 @@ func player_in_attack_range(delta) -> bool:
 				return true
 	return false
 
-
+# enemy walks back to original position
 func return_to_original(delta) -> void:
 	var direction
 	var angle_to

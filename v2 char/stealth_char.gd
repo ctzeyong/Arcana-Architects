@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
+# character stats, change these numbers as required
 const BASE_SPEED := 4000
 const SPRINT_MULTIPLIER := 2.5
 const ALERTBOX_RADIUS := 13.0
 const ALERTBOX_MULTIPLER := 4.0
-var last_direction := 0 
+
 # to decide idle animation, 0 1 2 3 correspond to up down left right 
+var last_direction := 0 
+
 var health := 100.0
 var item_has_charge := true
 
@@ -79,11 +82,15 @@ func _physics_process(delta):
 				%StealthCharAnim.idle_right_anim()
 	
 	move_and_slide()
+	
+	# display item charge on pressing "q"
 	$ItemCharge.text = str(Global.gloves_unlock_left)
 	if Input.is_action_just_pressed("use_item") and Global.gloves_equipped:
 		$ItemCharge.visible = true
 		$ChargeTimer.start()
 	
+	
+	# the following code was a test to allow the character to walk through walls
 	#if item_has_charge:
 		#if Input.is_action_pressed("use_item"):
 			#set_collision_mask_value(1, false)
@@ -105,20 +112,21 @@ func take_damage(dmg):
 		#print("death")
 		health_depleted.emit()
 
+# also part of the test for character walking through walls
+#func _on_item_timer_timeout():
+	#item_has_charge = false
+	##print("no charge")
 
-func _on_item_timer_timeout():
-	item_has_charge = false
-	#print("no charge")
-
-
+# timer to manage health bar display
 func _on_hp_timer_timeout():
 	$HealthBar.visible = false
 
-
+# timer to manage item charge display
 func _on_charge_timer_timeout():
 	$ItemCharge.visible = false
 
 
+# triggers when an enemy enters the alert box of the character
 func _on_alert_box_body_entered(body):
 	if body.has_method("player_is_near"):
 		body.player_is_near()

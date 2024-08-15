@@ -38,12 +38,10 @@ func _physics_process(delta):
 	
 	match state:
 		State.PATROL:
-			#print("PATROL")
 			velocity = Vector2.ZERO
 			%SightCone.set_color(LIGHT_CYAN)
 			%WizardAnim.idle_anim()
 			if %DetectBox.get_overlapping_bodies():
-				#print("player in area")
 				if detect_player(delta):
 					state = State.CHASE
 					return
@@ -53,7 +51,6 @@ func _physics_process(delta):
 				P_State.ROTATE:
 					rotate_patrol(delta)
 		State.INVESTIGATE:
-			#print("INVESTIGATE")
 			%SightCone.set_color(GOLD)
 			%WizardAnim.walk_anim()
 			investigate_player(delta)
@@ -61,7 +58,6 @@ func _physics_process(delta):
 				state = State.CHASE
 				player_pos = null
 		State.SEEK:
-			#print("SEEK")
 			%SightCone.set_color(GOLD)
 			%WizardAnim.idle_anim()
 			seek_player(delta)
@@ -69,7 +65,6 @@ func _physics_process(delta):
 				state = State.CHASE
 				%SeekTimer.stop()
 		State.CHASE:
-			#print("CHASE")
 			%SightCone.set_color(LIGHT_CORAL)
 			%WizardAnim.walk_anim()
 			chase_player(delta)
@@ -79,7 +74,6 @@ func _physics_process(delta):
 			if !detect_player(delta):
 				state = State.LOST_SIGHT
 		State.LOST_SIGHT:
-			#print("LOST SIGHT")
 			%SightCone.set_color(LIGHT_CORAL)
 			if lost_player(delta):
 				state = State.SEEK
@@ -89,14 +83,12 @@ func _physics_process(delta):
 			if detect_player(delta):
 				state = State.CHASE
 		State.ATTACK:
-			#print("ATTACK")
 			attack_player(delta)
 			if !player_in_attack_range(delta):
 				state = State.CHASE
 			if !detect_player(delta):
 				state = State.LOST_SIGHT
 		State.RETURN:
-			#print("RETURN")
 			%SightCone.set_color(LIGHT_CYAN)
 			%WizardAnim.walk_anim()
 			return_to_original(delta)
@@ -125,12 +117,8 @@ func shoot() -> void:
 	new_orb.global_position = global_position
 	new_orb.target_destination = player.global_position
 	get_tree().root.add_child(new_orb)
-	#print("Wizard position: ", global_position)
-	#print("Player position: ", player.global_position)
-	#print("Orb starting position: ", new_orb.global_position)
-	#print("Orb destination: ", new_orb.target_destination)
 
-
+# in tandem with rotate_patrol
 func _on_rotate_timer_timeout():
 	match rotation_state:
 		2:
@@ -138,7 +126,7 @@ func _on_rotate_timer_timeout():
 		4:
 			rotation_state = 1
 
-
+# in tandem with seek_player
 func _on_seek_timer_timeout():
 	match rotation_state:
 		2:
@@ -147,6 +135,6 @@ func _on_seek_timer_timeout():
 			rotation_state = 1
 			state = State.RETURN
 
-
+# manage attack speed
 func _on_attack_timer_timeout():
 	ammo_loaded = true
