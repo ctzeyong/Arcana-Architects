@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dyobd05jitc5s"]
 
-[ext_resource type="Script" path="res://purple_pearl_anim.gd" id="1_8y44e"]
+[ext_resource type="Script" path="res://pickups/purple pearl/purple_pearl_anim.gd" id="1_8y44e"]
 [ext_resource type="Texture2D" uid="uid://dsbwxxfocvl2r" path="res://pickups/purple pearl/pearl16pxss.png" id="2_ahu0y"]
 
 [sub_resource type="Animation" id="Animation_uwwe6"]
